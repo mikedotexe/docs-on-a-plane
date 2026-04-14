@@ -53,7 +53,7 @@ paths:
                   id: fastnear
                   method: query
                   params:
-                    account_id: example.near
+                    account_id: global-contract.nfts.tg
                     request_type: view_global_contract_code_by_account_id
                     finality: final
               testnet:

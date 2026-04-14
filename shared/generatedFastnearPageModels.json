@@ -2787,7 +2787,7 @@
       "networks": [
         {
           "defaultFields": {
-            "account_id": "example.near"
+            "account_id": "global-contract.nfts.tg"
           },
           "key": "mainnet",
           "label": "Mainnet",
@@ -2905,7 +2905,7 @@
               "id": "fastnear",
               "method": "query",
               "params": {
-                "account_id": "example.near",
+                "account_id": "global-contract.nfts.tg",
                 "request_type": "view_global_contract_code_by_account_id",
                 "finality": "final"
               }
@@ -3113,8 +3113,8 @@
       "networks": [
         {
           "defaultFields": {
-            "account_id": "contract.near",
-            "prefix_base64": ""
+            "account_id": "lockup.near",
+            "prefix_base64": "U1RBVEU="
           },
           "key": "mainnet",
           "label": "Mainnet",
@@ -3122,8 +3122,8 @@
         },
         {
           "defaultFields": {
-            "account_id": "contract.testnet",
-            "prefix_base64": ""
+            "account_id": "v1.signer-prod.testnet",
+            "prefix_base64": "U1RBVEU="
           },
           "key": "testnet",
           "label": "Testnet",
@@ -3251,8 +3251,8 @@
               "params": {
                 "request_type": "view_state",
                 "finality": "final",
-                "account_id": "contract.near",
-                "prefix_base64": ""
+                "account_id": "lockup.near",
+                "prefix_base64": "U1RBVEU="
               }
             },
             "headers": {},
@@ -3272,8 +3272,8 @@
               "params": {
                 "request_type": "view_state",
                 "finality": "final",
-                "account_id": "contract.testnet",
-                "prefix_base64": ""
+                "account_id": "v1.signer-prod.testnet",
+                "prefix_base64": "U1RBVEU="
               }
             },
             "headers": {},
@@ -9929,7 +9929,7 @@
       "networks": [
         {
           "defaultFields": {
-            "account_id": "example.near"
+            "account_id": "root.near"
           },
           "key": "mainnet",
           "label": "Mainnet",
@@ -9937,7 +9937,7 @@
         },
         {
           "defaultFields": {
-            "account_id": "example.near"
+            "account_id": "root.testnet"
           },
           "key": "testnet",
           "label": "Testnet",
@@ -10021,7 +10021,7 @@
               "id": "fastnear",
               "method": "maintenance_windows",
               "params": {
-                "account_id": "example.near"
+                "account_id": "root.near"
               }
             },
             "headers": {},
@@ -10039,7 +10039,7 @@
               "id": "fastnear",
               "method": "maintenance_windows",
               "params": {
-                "account_id": "example.near"
+                "account_id": "root.testnet"
               }
             },
             "headers": {},

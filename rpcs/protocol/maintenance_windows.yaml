@@ -46,7 +46,7 @@ paths:
                   id: fastnear
                   method: maintenance_windows
                   params:
-                    account_id: example.near
+                    account_id: root.near
               testnet:
                 summary: Get maintenance windows (Testnet)
                 value:
@@ -54,7 +54,7 @@ paths:
                   id: fastnear
                   method: maintenance_windows
                   params:
-                    account_id: example.near
+                    account_id: root.testnet
       responses:
         200:
           description: Successful response

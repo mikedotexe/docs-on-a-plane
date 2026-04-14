@@ -77,6 +77,8 @@ Supported variables:
   Run the fast curated subset of live RPC example checks.
 - `npm run audit:rpc-examples:all`
   Run the full live audit for every non-mutating RPC example.
+- `npm run audit:rpc-example-placeholders`
+  Run the static placeholder audit so generic generator defaults like `example.near` or `ExampleCodeHash` never quietly slip back into tracked RPC examples.
 - `npm run audit:fastnear-defaults`
   Run the live FastNEAR API default audit using network-aware account, token, and public-key defaults.
 - `npm run audit:transfers-defaults`
@@ -108,6 +110,7 @@ Supported variables:
   It requires `FASTNEAR_API_KEY` for live validation, so unauthenticated audit runs will continue to report it as a tracked skip.
 - `view_global_contract_code` and `view_global_contract_code_by_account_id` on mainnet still need a curated account/hash pair.
   Testnet examples are verified; mainnet remains intentionally tracked until we confirm a real example that succeeds on load.
+- `scripts/rpc-example-config.js` is the shared source for curated static RPC params, manual per-network overrides, tracked follow-ups, and the small allowlist of known placeholder gaps that still need real curation.
 - `broadcast_tx_async`, `broadcast_tx_commit`, and `send_tx` are intentionally excluded from the live audit.
   They require a freshly signed transaction, so the automated audit keeps them out of CI and treats them as manual-only validation.
 

@@ -60,8 +60,8 @@ paths:
                   params:
                     request_type: view_state
                     finality: final
-                    account_id: contract.near
-                    prefix_base64: ""
+                    account_id: lockup.near
+                    prefix_base64: U1RBVEU=
               testnet:
                 summary: View Testnet Contract State
                 value:
@@ -71,8 +71,8 @@ paths:
                   params:
                     request_type: view_state
                     finality: final
-                    account_id: contract.testnet
-                    prefix_base64: ""
+                    account_id: v1.signer-prod.testnet
+                    prefix_base64: U1RBVEU=
       responses:
         200:
           description: Successful response

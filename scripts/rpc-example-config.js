@@ -49,13 +49,10 @@ const TRACKED_RPC_EXAMPLE_FOLLOWUPS = [
   {
     id: 'mainnet-global-contract-curation',
     networks: ['mainnet'],
-    operationIds: [
-      'view_global_contract_code',
-      'view_global_contract_code_by_account_id',
-    ],
-    reason: 'No verified mainnet global-contract account/hash pair is curated yet.',
+    operationIds: ['view_global_contract_code'],
+    reason: 'No verified mainnet global-contract hash example is curated yet.',
     nextStep:
-      'Curate a confirmed mainnet account/hash pair and replace the placeholder mainnet examples.',
+      'Curate a confirmed mainnet hash-deployed global contract and replace the placeholder mainnet example.',
   },
   {
     id: 'mutating-transaction-validation',
@@ -66,6 +63,70 @@ const TRACKED_RPC_EXAMPLE_FOLLOWUPS = [
       'Keep them out of CI and validate them with a dedicated signed-transaction harness or manual checklist.',
   },
 ];
+
+const CURATED_RPC_EXAMPLE_PARAMS = {
+  call_function: {
+    mainnet: {
+      account_id: 'contract.near',
+      args_base64: 'e30=',
+      finality: 'final',
+      method_name: 'get_info',
+      request_type: 'call_function',
+    },
+    testnet: {
+      account_id: 'contract.testnet',
+      args_base64: 'e30=',
+      finality: 'final',
+      method_name: 'get_info',
+      request_type: 'call_function',
+    },
+  },
+  maintenance_windows: {
+    mainnet: {
+      account_id: 'root.near',
+    },
+    testnet: {
+      account_id: 'root.testnet',
+    },
+  },
+  view_code: {
+    mainnet: {
+      account_id: 'intents.near',
+      finality: 'final',
+      request_type: 'view_code',
+    },
+    testnet: {
+      account_id: 'guest-book.testnet',
+      finality: 'final',
+      request_type: 'view_code',
+    },
+  },
+  view_state: {
+    mainnet: {
+      account_id: 'lockup.near',
+      finality: 'final',
+      prefix_base64: 'U1RBVEU=',
+      request_type: 'view_state',
+    },
+    testnet: {
+      account_id: 'v1.signer-prod.testnet',
+      finality: 'final',
+      prefix_base64: 'U1RBVEU=',
+      request_type: 'view_state',
+    },
+  },
+};
+
+const ALLOWED_RPC_PLACEHOLDERS = {
+  view_global_contract_code: {
+    mainnet: {
+      code_hash: {
+        reason: 'No verified mainnet global contract code example is curated yet.',
+        value: 'ExampleCodeHash',
+      },
+    },
+  },
+};
 
 const MANUAL_RPC_EXAMPLE_OVERRIDES = {
   EXPERIMENTAL_protocol_config: {
@@ -100,18 +161,47 @@ const MANUAL_RPC_EXAMPLE_OVERRIDES = {
     testnet: { code_hash: TESTNET_GLOBAL_CONTRACT_EXAMPLES.byCodeHash },
   },
   view_global_contract_code_by_account_id: {
-    mainnet: {
-      skipAudit: true,
-      skipReason: 'No verified mainnet global contract account example is curated yet.',
-    },
+    mainnet: { account_id: 'global-contract.nfts.tg' },
     testnet: { account_id: TESTNET_GLOBAL_CONTRACT_EXAMPLES.byAccountId },
   },
 };
 
 const AUDIT_SKIPS = {};
 
+function cloneJson(value) {
+  if (value === undefined) {
+    return undefined;
+  }
+
+  return JSON.parse(JSON.stringify(value));
+}
+
 function getManualOverride(operationId, network) {
   return MANUAL_RPC_EXAMPLE_OVERRIDES[operationId]?.[network];
+}
+
+function getCuratedRpcExampleParams(operationId, network) {
+  return cloneJson(CURATED_RPC_EXAMPLE_PARAMS[operationId]?.[network]);
+}
+
+function getRpcExampleParamOverride(operationId, network) {
+  const curated = getCuratedRpcExampleParams(operationId, network) || {};
+  const manual = getManualOverride(operationId, network) || {};
+  const merged = { ...curated };
+
+  for (const [key, value] of Object.entries(manual)) {
+    if (key === 'skipAudit' || key === 'skipReason') {
+      continue;
+    }
+
+    merged[key] = cloneJson(value);
+  }
+
+  return Object.keys(merged).length > 0 ? merged : null;
+}
+
+function getAllowedRpcPlaceholders(operationId, network) {
+  return cloneJson(ALLOWED_RPC_PLACEHOLDERS[operationId]?.[network]) || {};
 }
 
 function getAuditSkip(operationId, network) {
@@ -132,7 +222,9 @@ function getAuditSkip(operationId, network) {
 }
 
 module.exports = {
+  ALLOWED_RPC_PLACEHOLDERS,
   AUDIT_SKIPS,
+  CURATED_RPC_EXAMPLE_PARAMS,
   DISCOVERY_NETWORKS,
   METRICS_AUDIT_ENV_VAR,
   MANUAL_RPC_EXAMPLE_OVERRIDES,
@@ -141,5 +233,8 @@ module.exports = {
   TESTNET_GLOBAL_CONTRACT_EXAMPLES,
   TRACKED_RPC_EXAMPLE_FOLLOWUPS,
   getAuditSkip,
+  getAllowedRpcPlaceholders,
+  getCuratedRpcExampleParams,
   getManualOverride,
+  getRpcExampleParamOverride,
 };

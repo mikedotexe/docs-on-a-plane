@@ -21,6 +21,9 @@ const {
   OPERATIONS,
   DEPRECATED_METHODS,
 } = require('./nearcore-operation-map');
+const {
+  getRpcExampleParamOverride,
+} = require('./rpc-example-config');
 
 // ---------------------------------------------------------------------------
 // Paths
@@ -688,6 +691,10 @@ function buildMergedResult(nearcoreResult, existingResult) {
  */
 function generatePlaceholderExamples(method, paramsSchema, op) {
   const baseParams = buildExampleParams(method, paramsSchema, op);
+  const buildParams = (network) => ({
+    ...(clone(op?.exampleParamsByNetwork?.[network] || baseParams) || {}),
+    ...(getRpcExampleParamOverride(op?.operationId, network) || {}),
+  });
 
   return {
     mainnet: {
@@ -696,7 +703,7 @@ function generatePlaceholderExamples(method, paramsSchema, op) {
         jsonrpc: '2.0',
         id: 'fastnear',
         method: method,
-        params: op?.exampleParamsByNetwork?.mainnet || baseParams,
+        params: buildParams('mainnet'),
       },
     },
     testnet: {
@@ -705,7 +712,7 @@ function generatePlaceholderExamples(method, paramsSchema, op) {
         jsonrpc: '2.0',
         id: 'fastnear',
         method: method,
-        params: op?.exampleParamsByNetwork?.testnet || baseParams,
+        params: buildParams('testnet'),
       },
     },
   };

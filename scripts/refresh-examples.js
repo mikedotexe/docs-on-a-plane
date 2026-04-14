@@ -18,7 +18,7 @@ const path = require('path');
 const YAML = require('yaml');
 const {
   DISCOVERY_NETWORKS,
-  getManualOverride,
+  getRpcExampleParamOverride,
 } = require('./rpc-example-config');
 const {
   discoverRpcContext,
@@ -50,6 +50,13 @@ function formatValue(newValue, nodeType) {
   return s;
 }
 
+function overrideParam(operationId, field) {
+  return {
+    mainnet: (_d, network) => getRpcExampleParamOverride(operationId, network)?.[field],
+    testnet: (_d, network) => getRpcExampleParamOverride(operationId, network)?.[field],
+  };
+}
+
 /**
  * Declarative update map — each entry describes one YAML file and the
  * param fields to set for mainnet and testnet examples.
@@ -67,28 +74,40 @@ const UPDATES = [
   {
     file: 'contract/view_code.yaml',
     params: {
-      account_id: {
-        mainnet: (_d, network) => getManualOverride('view_code', network)?.account_id,
-        testnet: (_d, network) => getManualOverride('view_code', network)?.account_id,
-      },
+      account_id: overrideParam('view_code', 'account_id'),
+    },
+  },
+  {
+    file: 'contract/call.yaml',
+    params: {
+      account_id: overrideParam('call_function', 'account_id'),
+      args_base64: overrideParam('call_function', 'args_base64'),
+      method_name: overrideParam('call_function', 'method_name'),
+    },
+  },
+  {
+    file: 'contract/view_state.yaml',
+    params: {
+      account_id: overrideParam('view_state', 'account_id'),
+      prefix_base64: overrideParam('view_state', 'prefix_base64'),
     },
   },
   {
     file: 'contract/view_global_contract_code.yaml',
     params: {
-      code_hash: {
-        mainnet: (_d, network) => getManualOverride('view_global_contract_code', network)?.code_hash,
-        testnet: (_d, network) => getManualOverride('view_global_contract_code', network)?.code_hash,
-      },
+      code_hash: overrideParam('view_global_contract_code', 'code_hash'),
     },
   },
   {
     file: 'contract/view_global_contract_code_by_account_id.yaml',
     params: {
-      account_id: {
-        mainnet: (_d, network) => getManualOverride('view_global_contract_code_by_account_id', network)?.account_id,
-        testnet: (_d, network) => getManualOverride('view_global_contract_code_by_account_id', network)?.account_id,
-      },
+      account_id: overrideParam('view_global_contract_code_by_account_id', 'account_id'),
+    },
+  },
+  {
+    file: 'protocol/maintenance_windows.yaml',
+    params: {
+      account_id: overrideParam('maintenance_windows', 'account_id'),
     },
   },
   {

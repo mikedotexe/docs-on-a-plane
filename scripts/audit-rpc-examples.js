@@ -167,6 +167,16 @@ async function runJsonRpcExample(url, payload) {
     };
   }
 
+  if (payload?.params?.request_type === 'view_state') {
+    const values = json.result?.values;
+    if (!Array.isArray(values) || values.length === 0) {
+      return {
+        ok: false,
+        reason: 'Expected non-empty state values',
+      };
+    }
+  }
+
   return {
     ok: true,
     reason: 'ok',

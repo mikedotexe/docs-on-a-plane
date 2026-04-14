@@ -13,6 +13,7 @@
     "lint": "npm run check:external-openapi && npm run sync:apis && node scripts/redocly-root-guard.js lint",
     "audit:rpc-examples": "node scripts/audit-rpc-examples.js --subset",
     "audit:rpc-examples:all": "node scripts/audit-rpc-examples.js --all-readonly",
+    "audit:rpc-example-placeholders": "node scripts/audit-rpc-example-placeholders.js",
     "audit:fastnear-defaults": "node scripts/audit-fastnear-defaults.js",
     "audit:transfers-defaults": "node scripts/audit-transfers-defaults.js",
     "audit:kv-fastdata-defaults": "node scripts/audit-kv-fastdata-defaults.js",
@@ -29,7 +30,7 @@
     "refresh-examples": "node scripts/refresh-examples.js",
     "standalone:dev": "node scripts/standalone-dev.js",
     "standalone:build": "node scripts/standalone-build.js",
-    "verify:workspace": "npm run lint && npm run build && npm run audit:rpc-examples:all && npm run audit:fastnear-defaults && npm run audit:transfers-defaults && npm run audit:kv-fastdata-defaults && npm run audit:neardata-defaults && npm run audit:transactions-defaults",
+    "verify:workspace": "npm run lint && npm run build && npm run audit:rpc-example-placeholders && npm run audit:rpc-examples:all && npm run audit:fastnear-defaults && npm run audit:transfers-defaults && npm run audit:kv-fastdata-defaults && npm run audit:neardata-defaults && npm run audit:transactions-defaults",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

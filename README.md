@@ -336,6 +336,7 @@ Four RPC server URLs are configured in `rpcs/openapi.yaml`:
 - This repo validates and builds the legacy verification surfaces, but it does not publish the public docs site. If `docs.fastnear.com` is stale after a push, the missing step is usually a `builder-docs` deployment, not anything in the generated `mike-docs` output.
 - Workspace stale-spec enforcement depends on the sibling service repos being present. In a standalone `mike-docs` checkout, `npm run check:external-openapi` skips those checks and CI validates the committed vendored `apis/<service>/` trees instead.
 - `npm run preview:fresh-examples`, `npm run refresh-examples`, and `npm run build:fresh-examples` update current-chain example values in several `rpcs/*.yaml` files. Those diffs are expected.
+- `scripts/rpc-example-config.js` is the shared source for curated static RPC params, manual per-network overrides, and the allowlisted placeholder follow-ups that still need real examples.
 - `REDOCLY_AUTHORIZATION` is not a substitute for `PLAN_GATES` on the production-equivalent build path.
 - Docs-only or ingestion-only repos without a public HTTP surface are out of scope for the OpenAPI/Redocly flow.
 
@@ -346,6 +347,7 @@ npm run check:external-openapi  # Verify sibling service specs are not stale
 npm run build                  # Build with PLAN_GATES or local-plan fallback
 npm run build:fresh-examples   # Build after refreshing tracked RPC example values
 npm run lint                   # Validate OpenAPI specs
+npm run audit:rpc-example-placeholders # Fail if generic RPC placeholders slip back into tracked examples
 npm run preview:fresh-examples # Preview after refreshing tracked RPC example values
 npm run verify:workspace       # Stale-spec checks + portal lint + local build
 npm run smoke:operations       # Smoke test representative local pretty routes
