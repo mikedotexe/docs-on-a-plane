@@ -26,11 +26,14 @@ The contract between the repos is now:
 2. generated page-model data
    - `mike-docs/shared/generatedFastnearPageModels.json`
    - `builder-docs/src/data/generatedFastnearPageModels.json`
-3. shared request/auth semantics encoded into those models and the direct runtime
+3. generated structured graph data
+   - `mike-docs/shared/generatedFastnearStructuredGraph.json`
+   - `builder-docs/src/data/generatedFastnearStructuredGraph.json`
+4. shared request/auth semantics encoded into those models and the direct runtime
 
 `builder-docs` uses the vendored models in two places:
 
-- `/docs/rpc-api/**` pages via `FastnearDirectOperation`
+- root-mounted public wrapper pages such as `/rpc/**`, `/api/**`, `/tx/**`, `/transfers/**`, `/neardata/**`, `/fastdata/kv/**`, `/auth/**`, and `/agents/**` via `FastnearDirectOperation`
 - generated hosted pages under `src/pages/rpcs/**` and `src/pages/apis/**` via `FastnearHostedOperationPage`
 
 ## Query Params And Browser State
@@ -59,7 +62,10 @@ npm install
 npm run sync:apis
 ```
 
-That refreshes the generated page-model registry vendored into `builder-docs`.
+That refreshes both generated registries vendored into `builder-docs`:
+
+- page models
+- structured graph metadata for JSON-LD, hosted-page breadcrumbs, and `/structured-data/site-graph.json`
 
 ### Run the public docs UI
 
@@ -117,7 +123,9 @@ That auto-height behavior comes from `FastnearHostedOperationPage`.
 
 - `/Users/mikepurvis/near/mike-docs/scripts/generate-page-models.js`
 - `/Users/mikepurvis/near/mike-docs/shared/generatedFastnearPageModels.json`
+- `/Users/mikepurvis/near/mike-docs/shared/generatedFastnearStructuredGraph.json`
 - `/Users/mikepurvis/near/fn/builder-docs/src/data/generatedFastnearPageModels.json`
+- `/Users/mikepurvis/near/fn/builder-docs/src/data/generatedFastnearStructuredGraph.json`
 - `/Users/mikepurvis/near/fn/builder-docs/src/components/FastnearDirectOperation/index.js`
 - `/Users/mikepurvis/near/fn/builder-docs/src/components/FastnearHostedOperationPage/index.js`
 - `/Users/mikepurvis/near/fn/builder-docs/scripts/generate-bespoke-host-pages.js`

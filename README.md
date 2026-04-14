@@ -249,10 +249,12 @@ Some operations are `custom` type (not derived from nearcore), such as `metrics`
 `builder-docs` is now the public presentation runtime. This repo feeds it generated artifacts and optional local backends:
 
 1. `mike-docs` syncs aggregate REST specs and generates per-operation leaf files.
-2. `mike-docs` compiles portal-owned enhancements and page models.
+2. `mike-docs` compiles portal-owned enhancements, page models, and structured graph metadata.
 3. Generated page models are vendored into `builder-docs/src/data/generatedFastnearPageModels.json`.
-4. `builder-docs` renders `/docs/rpc-api/**` natively with `FastnearDirectOperation`.
-5. `builder-docs` also generates canonical hosted `/rpcs/**` and `/apis/**` pages from the same models.
+4. Generated structured graph metadata is vendored into `builder-docs/src/data/generatedFastnearStructuredGraph.json`.
+5. `builder-docs` renders the root-mounted public wrapper routes natively with `FastnearDirectOperation`, including `/rpc/**`, `/api/**`, `/tx/**`, `/transfers/**`, `/neardata/**`, `/fastdata/kv/**`, `/auth/**`, and `/agents/**`.
+6. `builder-docs` also generates canonical hosted `/rpcs/**` and `/apis/**` pages from the same models.
+7. `builder-docs` emits centralized JSON-LD and a public `/structured-data/site-graph.json` artifact from the same shared graph.
 
 The Redocly runtime is now legacy scaffolding for validation and parity checks.
 

@@ -132,7 +132,7 @@ Redocly/Realm is now treated as the legacy delivery backend. `builder-docs` is t
 ### Phase 2. Builder-Docs Runtime Migration
 
 - [x] Vendor generated bespoke page-model data into `builder-docs`.
-- [x] Ship the first direct-rendered bespoke page in `builder-docs` for `/docs/rpc-api/account/view-account`.
+- [x] Ship the first direct-rendered bespoke page in `builder-docs` for `/rpc/account/view-account`.
 - [x] Add iframe auto-height messaging for remaining bespoke iframe pages as transitional UX relief.
 - [x] Generalize the builder-docs direct-render runtime so additional bespoke pages can move off iframes without re-copying component logic.
 - [x] Move the completed RPC `account` + `block` bespoke slices to direct rendering in `builder-docs`.
@@ -212,7 +212,7 @@ Redocly/Realm is now treated as the legacy delivery backend. `builder-docs` is t
 - April 12, 2026: architecture direction is now explicit: `builder-docs` should own bespoke presentation, while `mike-docs` should own generation and legacy delivery. The direct-render `view_account` pilot in `builder-docs` is the first proof of that direction.
 - April 12, 2026: the direct-render path now covers the bespoke RPC `account` and `block` docs in `builder-docs`, while remaining bespoke iframe pages use auto-height messaging as transitional UX relief.
 - April 12, 2026: the direct-render path now also covers the current bespoke REST slices in `builder-docs` (`apis/neardata/**` and `apis/fastnear/v1/**`), so all currently bespoke pages are native in `builder-docs`.
-- April 12, 2026: the remaining FastNEAR API `system` and `v0` pages are now direct-rendered in `builder-docs` too. There are no `ApiRedoc` or `RpcRedoc` pages left under `builder-docs/docs/rpc-api`; the full public docs surface is now native to the bespoke runtime.
+- April 12, 2026: the remaining FastNEAR API `system` and `v0` pages are now direct-rendered in `builder-docs` too. There are no `ApiRedoc` or `RpcRedoc` pages left in the public wrapper tree; the full public docs surface is now native to the bespoke runtime.
 - April 12, 2026: `/apis/transfers/v0/transfers` is now the first body-driven bespoke page. The generator emits HTTP JSON-body fields/examples/schema, the shared runtime can build and send JSON POST bodies, and `builder-docs` now renders the transfers page natively with the new body-builder path.
 - April 12, 2026: the full `kv-fastdata-server` public slice is now on the bespoke path. The shared runtime now handles mixed path/body HTTP pages plus array body inputs, backend coverage includes `/apis/kv-fastdata/**`, and `builder-docs` renders the KV docs natively instead of through iframe-based Redocly pages.
 - April 12, 2026: the full `explorer-api` public slice is now on the bespoke path. Backend coverage includes `/apis/transactions/**`, generated page models now cover all five public transactions endpoints, and `builder-docs` renders the transactions docs natively instead of through iframe-based Redocly pages.

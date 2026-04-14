@@ -105,7 +105,7 @@ Default rule:
 
 In `builder-docs`:
 
-- create or update the section landing page under `docs/rpc-api/<service>/`
+- create or update the section landing page under the matching root-mounted docs family in `builder-docs` (`docs/api/`, `docs/tx/`, `docs/transfers/`, `docs/neardata/`, or `docs/fastdata/kv/`)
 - create operation pages that use `FastnearDirectOperation`
 - point those pages at the generated `pageModelId` for the canonical route
 - add the section to the appropriate navbar and sidebar
