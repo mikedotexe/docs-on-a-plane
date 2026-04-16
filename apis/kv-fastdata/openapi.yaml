@@ -493,7 +493,7 @@ paths:
       x-fastnear-title: KV FastData API - History by Predecessor
   /v0/history/{current_account_id}/{predecessor_id}/{key}:
     get:
-      description: This GET route is useful for simple exact-key lookups without a request body.
+      description: Fetch every historical write for one exact key under one predecessor and contract.
       operationId: get_history_key
       parameters:
         - description: Contract account whose FastData keys were written.
@@ -685,7 +685,7 @@ paths:
       x-fastnear-title: KV FastData API - Latest by Predecessor
   /v0/latest/{current_account_id}/{predecessor_id}/{key}:
     get:
-      description: This GET route is useful for quick exact-key reads without a request body.
+      description: Fetch the latest value for one exact key under one predecessor and contract.
       operationId: get_latest_key
       parameters:
         - description: Contract account whose FastData keys were written.
