@@ -36,6 +36,11 @@ const TESTNET_GLOBAL_CONTRACT_EXAMPLES = {
   byCodeHash: '3vaopJ7aRoivvzZLngPQRBEd8VJr2zPLTxQfnRCoFgNX',
 };
 
+const MAINNET_GLOBAL_CONTRACT_EXAMPLES = {
+  byAccountId: 'global-contract.nfts.tg',
+  byCodeHash: 'A2VxywASqbnarBAfTWobhDZjMXobjnYyJmkjhoXAiYBz',
+};
+
 const METRICS_AUDIT_ENV_VAR = 'FASTNEAR_API_KEY';
 
 const TRACKED_RPC_EXAMPLE_FOLLOWUPS = [
@@ -45,14 +50,6 @@ const TRACKED_RPC_EXAMPLE_FOLLOWUPS = [
     operationIds: ['metrics'],
     reason: 'The live endpoint is HTTP GET /metrics and requires an API key.',
     nextStep: `Set ${METRICS_AUDIT_ENV_VAR} to validate metrics in the audit path.`,
-  },
-  {
-    id: 'mainnet-global-contract-curation',
-    networks: ['mainnet'],
-    operationIds: ['view_global_contract_code'],
-    reason: 'No verified mainnet global-contract hash example is curated yet.',
-    nextStep:
-      'Curate a confirmed mainnet hash-deployed global contract and replace the placeholder mainnet example.',
   },
   {
     id: 'mutating-transaction-validation',
@@ -117,16 +114,7 @@ const CURATED_RPC_EXAMPLE_PARAMS = {
   },
 };
 
-const ALLOWED_RPC_PLACEHOLDERS = {
-  view_global_contract_code: {
-    mainnet: {
-      code_hash: {
-        reason: 'No verified mainnet global contract code example is curated yet.',
-        value: 'ExampleCodeHash',
-      },
-    },
-  },
-};
+const ALLOWED_RPC_PLACEHOLDERS = {};
 
 const MANUAL_RPC_EXAMPLE_OVERRIDES = {
   EXPERIMENTAL_protocol_config: {
@@ -154,14 +142,11 @@ const MANUAL_RPC_EXAMPLE_OVERRIDES = {
     testnet: { account_id: 'guest-book.testnet' },
   },
   view_global_contract_code: {
-    mainnet: {
-      skipAudit: true,
-      skipReason: 'No verified mainnet global contract code example is curated yet.',
-    },
+    mainnet: { code_hash: MAINNET_GLOBAL_CONTRACT_EXAMPLES.byCodeHash },
     testnet: { code_hash: TESTNET_GLOBAL_CONTRACT_EXAMPLES.byCodeHash },
   },
   view_global_contract_code_by_account_id: {
-    mainnet: { account_id: 'global-contract.nfts.tg' },
+    mainnet: { account_id: MAINNET_GLOBAL_CONTRACT_EXAMPLES.byAccountId },
     testnet: { account_id: TESTNET_GLOBAL_CONTRACT_EXAMPLES.byAccountId },
   },
 };
@@ -230,6 +215,7 @@ module.exports = {
   MANUAL_RPC_EXAMPLE_OVERRIDES,
   MUTATING_RPC_METHODS,
   SUBSET_OPERATION_IDS,
+  MAINNET_GLOBAL_CONTRACT_EXAMPLES,
   TESTNET_GLOBAL_CONTRACT_EXAMPLES,
   TRACKED_RPC_EXAMPLE_FOLLOWUPS,
   getAuditSkip,

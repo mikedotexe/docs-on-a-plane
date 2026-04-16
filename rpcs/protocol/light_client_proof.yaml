@@ -62,9 +62,9 @@ paths:
                   method: light_client_proof
                   params:
                     type: transaction
-                    transaction_hash: ESShk21GZb6cgFRoJyEJqdJXuoP72fuCmCn6pNMhXFC7
-                    sender_id: 00000000012.near
-                    light_client_head: AF2yY9x1SkCsPWpgfXa4RvnEY99YeSEExBZZ4ouiwoa1
+                    transaction_hash: 34E7weKCDqXh3xPKdBgSWRqo44yTWjbka9deMK8JbAxx
+                    sender_id: escrow.ai.near
+                    light_client_head: 9XN7MtDywZvfGx6TKy1MT2iCZkKuHikJXmNazxdZ4x6T
               testnet:
                 summary: Testnet Light Client Proof
                 value:
@@ -73,9 +73,9 @@ paths:
                   method: light_client_proof
                   params:
                     type: transaction
-                    transaction_hash: 2HVQfqHKu78VEW1aRidvR5Auqu1bw1V12TJywoqw1aup
-                    sender_id: relay.aurora
-                    light_client_head: Ayfw9wu3T3zEqCbrvq9CuKmGmuyiJiETvwCApXZHmCho
+                    transaction_hash: 9LPbkwJ26HYgda7KHrURc6jozBcpdA1kUMSEzwm81JPx
+                    sender_id: near-mpc-staking4all-01.testnet
+                    light_client_head: 6JYj6i1FaUCzdoqy41CqUcZJxa5n9EmLEENRDH2gLm5u
       responses:
         200:
           description: Successful response

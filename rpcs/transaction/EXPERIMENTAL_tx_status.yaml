@@ -63,8 +63,8 @@ paths:
                   method: EXPERIMENTAL_tx_status
                   params:
                     wait_until: EXECUTED_OPTIMISTIC
-                    sender_account_id: 00000000012.near
-                    tx_hash: ESShk21GZb6cgFRoJyEJqdJXuoP72fuCmCn6pNMhXFC7
+                    sender_account_id: escrow.ai.near
+                    tx_hash: 34E7weKCDqXh3xPKdBgSWRqo44yTWjbka9deMK8JbAxx
               testnet:
                 summary: Get detailed transaction status (Testnet)
                 value:
@@ -73,8 +73,8 @@ paths:
                   method: EXPERIMENTAL_tx_status
                   params:
                     wait_until: EXECUTED_OPTIMISTIC
-                    sender_account_id: relay.aurora
-                    tx_hash: 2HVQfqHKu78VEW1aRidvR5Auqu1bw1V12TJywoqw1aup
+                    sender_account_id: near-mpc-staking4all-01.testnet
+                    tx_hash: 9LPbkwJ26HYgda7KHrURc6jozBcpdA1kUMSEzwm81JPx
       responses:
         200:
           description: Successful response

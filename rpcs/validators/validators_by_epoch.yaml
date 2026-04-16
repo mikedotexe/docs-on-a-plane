@@ -46,7 +46,7 @@ paths:
                   id: fastnear
                   method: validators
                   params:
-                    epoch_id: 9p3TzDhp6B5sRCaMi36TXqKWHfjEt4oyqaGoftHHaa8E
+                    epoch_id: 4cPDvNDzf3zbKvAxPNWnNGGz8x2tty6xhowmsugAm3fo
               testnet:
                 summary: Get validators by epoch (Testnet)
                 value:
@@ -54,7 +54,7 @@ paths:
                   id: fastnear
                   method: validators
                   params:
-                    epoch_id: GUv8AkE6VjpBTqCAkZ3qZi1q1G2Y3XBrDbQjfre9t3KP
+                    epoch_id: 3KWUtEFtzmmmc93EYpD3ehb4LE11YJ2jCFkqWhygkbaR
       responses:
         200:
           description: Successful response

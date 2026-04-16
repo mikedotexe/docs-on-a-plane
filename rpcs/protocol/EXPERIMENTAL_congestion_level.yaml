@@ -53,8 +53,8 @@ paths:
                   id: fastnear
                   method: EXPERIMENTAL_congestion_level
                   params:
-                    block_id: 9820210
-                    shard_id: 0
+                    block_id: 9XN7MtDywZvfGx6TKy1MT2iCZkKuHikJXmNazxdZ4x6T
+                    shard_id: 10
               testnet:
                 summary: Get congestion level (Testnet)
                 value:
@@ -62,7 +62,7 @@ paths:
                   id: fastnear
                   method: EXPERIMENTAL_congestion_level
                   params:
-                    block_id: Ayfw9wu3T3zEqCbrvq9CuKmGmuyiJiETvwCApXZHmCho
+                    block_id: 6JYj6i1FaUCzdoqy41CqUcZJxa5n9EmLEENRDH2gLm5u
                     shard_id: 10
       responses:
         200:

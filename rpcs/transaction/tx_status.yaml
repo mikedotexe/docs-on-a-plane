@@ -62,8 +62,8 @@ paths:
                   id: fastnear
                   method: tx
                   params:
-                    tx_hash: ESShk21GZb6cgFRoJyEJqdJXuoP72fuCmCn6pNMhXFC7
-                    sender_account_id: 00000000012.near
+                    tx_hash: 34E7weKCDqXh3xPKdBgSWRqo44yTWjbka9deMK8JbAxx
+                    sender_account_id: escrow.ai.near
               testnet:
                 summary: Testnet Example
                 value:
@@ -71,8 +71,8 @@ paths:
                   id: fastnear
                   method: tx
                   params:
-                    tx_hash: 2HVQfqHKu78VEW1aRidvR5Auqu1bw1V12TJywoqw1aup
-                    sender_account_id: relay.aurora
+                    tx_hash: 9LPbkwJ26HYgda7KHrURc6jozBcpdA1kUMSEzwm81JPx
+                    sender_account_id: near-mpc-staking4all-01.testnet
       responses:
         200:
           description: Successful response

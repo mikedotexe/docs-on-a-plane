@@ -50,7 +50,7 @@ paths:
                   id: fastnear
                   method: EXPERIMENTAL_validators_ordered
                   params:
-                    block_id: 193909529
+                    block_id: 194263739
               testnet:
                 summary: Get validators ordered (Testnet)
                 value:
@@ -58,7 +58,7 @@ paths:
                   id: fastnear
                   method: EXPERIMENTAL_validators_ordered
                   params:
-                    block_id: 245639469
+                    block_id: 246016197
       responses:
         200:
           description: Successful response
