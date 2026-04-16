@@ -79,7 +79,7 @@ const OPERATIONS = [
     category: 'account',
     operationId: 'view_account',
     summary: 'View account',
-    description: 'Retrieves detailed information about a NEAR account including balance and storage usage',
+    description: "Fetch an account's balance, storage usage, and code hash at a chosen block or finality.",
     exampleParamsByNetwork: {
       mainnet: {
         account_id: 'root.near',
@@ -104,7 +104,7 @@ const OPERATIONS = [
     category: 'account',
     operationId: 'view_access_key',
     summary: 'View access key',
-    description: 'Returns information about a single access key for given account',
+    description: "Fetch one access key's permissions and nonce by public key on a given account.",
     exampleParamsByNetwork: {
       mainnet: {
         account_id: 'root.near',
@@ -131,7 +131,7 @@ const OPERATIONS = [
     category: 'account',
     operationId: 'view_access_key_list',
     summary: 'View access key list',
-    description: 'Returns all access keys for a given account',
+    description: "Fetch every access key attached to an account, each with its permissions and nonce.",
     exampleParamsByNetwork: {
       mainnet: {
         account_id: 'root.near',
@@ -158,7 +158,7 @@ const OPERATIONS = [
     category: 'block',
     operationId: 'block_by_height',
     summary: 'Get block by height',
-    description: 'Returns block details for a given block height',
+    description: "Fetch a block's header and chunk summaries by its height in the chain.",
     exampleParamsByNetwork: {
       mainnet: {
         block_id: 9820210,
@@ -179,7 +179,7 @@ const OPERATIONS = [
     category: 'block',
     operationId: 'block_by_id',
     summary: 'Get block by hash',
-    description: 'Returns block details for a given block hash',
+    description: "Fetch a block's header and chunk summaries by its SHA-256 hash.",
     exampleParamsByNetwork: {
       mainnet: {
         block_id: 'EPnLgE7iEq9s7yTkos96M3cWymH5avBAPm3qx3NXqR8H',
@@ -200,7 +200,7 @@ const OPERATIONS = [
     category: 'block',
     operationId: 'block_effects',
     summary: 'Get block effects',
-    description: 'Returns changes in block for given block height or hash over all transactions for all types',
+    description: "Summarize every state change in a block — which accounts, keys, and contract-state entries were touched.",
     exampleParamsByNetwork: {
       mainnet: {
         block_id: 9820210,
@@ -230,7 +230,7 @@ const OPERATIONS = [
     category: 'contract',
     operationId: 'call_function',
     summary: 'Call contract function',
-    description: 'Execute a view method on a smart contract without modifying state',
+    description: "Invoke a contract view method without gas or state changes — reads computed values from contract logic.",
   },
   {
     type: 'query',
@@ -239,7 +239,7 @@ const OPERATIONS = [
     category: 'contract',
     operationId: 'view_state',
     summary: 'View contract state',
-    description: 'Returns the state (key value pairs) of a contract based on key prefix',
+    description: "Fetch the raw key-value state a contract has written, optionally filtered by key prefix.",
   },
   {
     type: 'query',
@@ -248,7 +248,7 @@ const OPERATIONS = [
     category: 'contract',
     operationId: 'view_code',
     summary: 'View contract code',
-    description: 'Returns the contract code (Wasm binary) deployed to the account',
+    description: "Fetch the compiled WebAssembly bytes deployed directly to a single account.",
   },
   {
     type: 'query',
@@ -257,7 +257,7 @@ const OPERATIONS = [
     category: 'contract',
     operationId: 'view_global_contract_code',
     summary: 'View global contract code',
-    description: 'Returns a globally deployed contract code by its code hash',
+    description: "Look up a global contract's WebAssembly bytes by its SHA-256 code hash.",
   },
   {
     type: 'query',
@@ -266,7 +266,7 @@ const OPERATIONS = [
     category: 'contract',
     operationId: 'view_global_contract_code_by_account_id',
     summary: 'View global contract code by account',
-    description: 'Returns the globally deployed contract code used by a specific account',
+    description: "Look up a global contract's WebAssembly bytes by the account that registered it.",
   },
 
   // === Protocol operations ===
@@ -277,7 +277,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'chunk_by_hash',
     summary: 'Get chunk by hash',
-    description: 'Returns details of a specific chunk by its hash',
+    description: "Fetch a single chunk's transactions and receipts by its content hash.",
     exampleParamsByNetwork: {
       mainnet: {
         chunk_id: 'CUc7UcYGcXwu5Y6UqEkkS6UbffHN4NNHhh5XLRHV8kLu',
@@ -291,7 +291,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'chunk_by_block_shard',
     summary: 'Get chunk by block and shard',
-    description: 'Returns details of a specific chunk by block ID and shard ID',
+    description: "Fetch a single chunk's transactions and receipts by its parent block plus shard index.",
     exampleParamsByNetwork: {
       mainnet: {
         block_id: 9820210,
@@ -306,7 +306,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'gas_price',
     summary: 'Get gas price',
-    description: 'Returns gas price for the latest block',
+    description: "Fetch the current chain-wide gas price for the most recent block.",
   },
   {
     type: 'gas_variant',
@@ -315,7 +315,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'gas_price_by_block',
     summary: 'Get gas price by block',
-    description: 'Returns gas price for a specific block height or hash',
+    description: "Fetch the chain-wide gas price at a chosen historical block, by height or hash.",
   },
   {
     type: 'simple',
@@ -324,7 +324,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'health',
     summary: 'Check node health',
-    description: 'Performs a health check on the node to determine if it is operating correctly',
+    description: "Ping a node for liveness — returns `null` on success, an error on unhealthy state.",
   },
   {
     type: 'custom',
@@ -332,7 +332,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'latest_block',
     summary: 'Get latest block',
-    description: 'Retrieves the most recent block from the blockchain',
+    description: "Fetch the latest final block — finality set automatically, no block ID needed.",
     note: 'FastNEAR-specific: uses block_id="latest" which is not in nearcore spec',
   },
   {
@@ -342,7 +342,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'light_client_proof',
     summary: 'Get light client proof',
-    description: 'Returns the proofs for a transaction execution',
+    description: "Fetch a Merkle proof that a transaction or receipt was included and executed, suitable for light-client verification.",
     exampleParamsByNetwork: {
       mainnet: {
         type: 'transaction',
@@ -358,7 +358,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'metrics',
     summary: 'Get node metrics',
-    description: 'Retrieves performance metrics and operational statistics from the node',
+    description: "Scrape a node's operational counters and gauges in Prometheus text-exposition format.",
     note: 'HTTP endpoint, not JSON-RPC. Not in nearcore OpenAPI spec.',
   },
   {
@@ -368,7 +368,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'network_info',
     summary: 'Get network info',
-    description: 'Queries the current state of node network connections',
+    description: "List the node's active peer connections and the block producers it currently tracks.",
   },
   {
     type: 'simple',
@@ -377,7 +377,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'status',
     summary: 'Get node status',
-    description: 'Requests the status of the connected RPC node',
+    description: "Fetch a node's binary version, sync progress, and head block in one snapshot.",
   },
   {
     type: 'simple',
@@ -386,7 +386,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'genesis_config',
     summary: 'Get genesis config',
-    description: 'Get initial state and parameters for the genesis block',
+    description: "Fetch the chain's immutable genesis config — initial records, protocol settings, and epoch length at block 0.",
   },
   {
     type: 'simple',
@@ -395,7 +395,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'client_config',
     summary: 'Get client config',
-    description: 'Queries client node configuration',
+    description: "Fetch the node's own local client config — timeouts, retry settings, and operator-chosen parameters.",
   },
   {
     type: 'simple',
@@ -404,7 +404,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'changes',
     summary: 'Get state changes',
-    description: 'Returns changes for a given account, contract or contract code for given block height or hash',
+    description: "Fetch detailed state changes in a block — filter by account, key prefix, or change type.",
   },
   {
     type: 'simple',
@@ -413,7 +413,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'maintenance_windows',
     summary: 'Get maintenance windows',
-    description: 'Returns the future windows for maintenance in current epoch for the specified account',
+    description: "Find upcoming block ranges where a validator can safely restart without missing block production.",
   },
   {
     type: 'simple',
@@ -422,7 +422,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'next_light_client_block',
     summary: 'Get next light client block',
-    description: 'Returns the next light client block',
+    description: "Advance a light client's verified chain by fetching the next block header after a known head.",
   },
 
   // === Transaction operations ===
@@ -433,7 +433,7 @@ const OPERATIONS = [
     category: 'transaction',
     operationId: 'broadcast_tx_async',
     summary: 'Send transaction asynchronously',
-    description: 'Submits a transaction to the network without waiting for its execution',
+    description: "Submit a signed transaction and immediately get its hash — no wait for execution.",
   },
   {
     type: 'simple',
@@ -442,7 +442,7 @@ const OPERATIONS = [
     category: 'transaction',
     operationId: 'broadcast_tx_commit',
     summary: 'Send transaction and wait',
-    description: 'Sends a transaction and waits until transaction is fully complete (10 second timeout)',
+    description: "Submit a signed transaction and wait for its commit — the legacy synchronous send, superseded by `send_tx`.",
   },
   {
     type: 'simple',
@@ -451,7 +451,7 @@ const OPERATIONS = [
     category: 'transaction',
     operationId: 'tx_status',
     summary: 'Get transaction status',
-    description: 'Queries status of a transaction by hash and returns the final transaction result',
+    description: "Check a transaction's final outcome by hash — succeeded, failed, or still unresolved.",
     exampleParamsByNetwork: {
       mainnet: {
         tx_hash: 'ESShk21GZb6cgFRoJyEJqdJXuoP72fuCmCn6pNMhXFC7',
@@ -466,7 +466,7 @@ const OPERATIONS = [
     category: 'transaction',
     operationId: 'send_tx',
     summary: 'Send transaction',
-    description: 'Sends transaction and returns the guaranteed execution status and results',
+    description: "Submit a signed transaction and wait for its final execution outcome — the current synchronous send.",
   },
 
   // === Validator operations ===
@@ -477,7 +477,7 @@ const OPERATIONS = [
     category: 'validators',
     operationId: 'validators_current',
     summary: 'Get current validators',
-    description: 'Retrieves the list of current validators and their details',
+    description: "Fetch the active validator set for the current epoch, with stakes and performance stats.",
   },
   {
     type: 'validators_variant',
@@ -486,7 +486,7 @@ const OPERATIONS = [
     category: 'validators',
     operationId: 'validators_by_epoch',
     summary: 'Get validators by epoch',
-    description: 'Retrieves validators for a specific epoch',
+    description: "Fetch the validator set for a chosen past epoch, selected by epoch-start block height or hash.",
   },
 
   // === EXPERIMENTAL operations (active, non-deprecated) ===
@@ -497,7 +497,7 @@ const OPERATIONS = [
     category: 'transaction',
     operationId: 'EXPERIMENTAL_tx_status',
     summary: 'Get detailed transaction status',
-    description: 'Queries status of a transaction by hash, returning the final transaction result and details of all receipts',
+    description: "Fetch a transaction's full receipt tree and per-receipt outcomes — richer than `tx_status`.",
     exampleParamsByNetwork: {
       mainnet: {
         tx_hash: 'ESShk21GZb6cgFRoJyEJqdJXuoP72fuCmCn6pNMhXFC7',
@@ -513,7 +513,7 @@ const OPERATIONS = [
     category: 'transaction',
     operationId: 'EXPERIMENTAL_receipt',
     summary: 'Get receipt by ID',
-    description: 'Fetches a receipt by its ID (as is, without a status or execution outcome)',
+    description: "Fetch a single receipt by ID — the cross-shard execution unit a transaction produces.",
     exampleParamsByNetwork: {
       mainnet: {
         receipt_id: 'FcFKrKQziMPCgYMFiLMZwecBtA7vqxdkatkhc1j3GYj8',
@@ -527,7 +527,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'EXPERIMENTAL_protocol_config',
     summary: 'Get protocol config',
-    description: 'A configuration that defines the protocol-level parameters such as gas/storage costs, limits, feature flags, and other settings',
+    description: "Fetch the runtime protocol config at a chosen block — gas costs, storage prices, and limits currently in force.",
   },
   {
     type: 'simple',
@@ -536,7 +536,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'EXPERIMENTAL_congestion_level',
     summary: 'Get congestion level',
-    description: 'Queries the congestion level of a shard',
+    description: "Measure a single shard's congestion pressure at a chosen block — a 0.0-to-1.0 saturation score.",
     exampleParamsByNetwork: {
       mainnet: {
         block_id: 9820210,
@@ -551,7 +551,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'EXPERIMENTAL_light_client_block_proof',
     summary: 'Get light client block proof',
-    description: 'Returns the proofs for a transaction execution',
+    description: "Fetch a Merkle proof that a block is included in the light client's verified chain.",
   },
   {
     type: 'simple',
@@ -560,7 +560,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'EXPERIMENTAL_split_storage_info',
     summary: 'Get split storage info',
-    description: 'Contains the split storage information for archival nodes',
+    description: "Inspect a node's split-storage layout — the boundary between hot recent data and cold archival data.",
   },
   {
     type: 'simple',
@@ -569,7 +569,7 @@ const OPERATIONS = [
     category: 'validators',
     operationId: 'EXPERIMENTAL_validators_ordered',
     summary: 'Get validators ordered',
-    description: 'Returns the current epoch validators ordered in the block producer order with repetition',
+    description: "List validators ordered by stake size at a chosen block — broader than just the current active set.",
   },
   {
     type: 'simple',
@@ -578,7 +578,7 @@ const OPERATIONS = [
     category: 'protocol',
     operationId: 'EXPERIMENTAL_light_client_proof',
     summary: 'Get light client execution proof',
-    description: 'Returns the proofs for a transaction execution',
+    description: "Fetch a Merkle proof of transaction or receipt inclusion — the EXPERIMENTAL alias of `light_client_proof`.",
     exampleParamsByNetwork: {
       mainnet: {
         type: 'transaction',

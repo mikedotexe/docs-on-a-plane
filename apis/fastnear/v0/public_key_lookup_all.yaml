@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: FastNEAR API - V0 Public Key Lookup (All)
   version: 3.0.3
-  description: Use this variant when one public key may control multiple accounts and you want the full set.
+  description: Fetch every account tied to a public key — full-access and limited-access keys together.
 paths:
   /v0/public_key/{public_key}/all:
     get:
-      description: Use this variant when one public key may control multiple accounts and you want the full set.
+      description: Fetch every account tied to a public key — full-access and limited-access keys together.
       operationId: lookup_by_public_key_all_v0
       parameters:
         - description: NEAR public key in `ed25519:...` or `secp256k1:...` form.

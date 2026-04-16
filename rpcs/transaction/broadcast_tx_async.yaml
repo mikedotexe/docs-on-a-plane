@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: Broadcast Transaction Async"
-  description: Send transaction asynchronously without waiting for execution
+  title: "NEAR Protocol RPC: Send transaction asynchronously"
+  description: Submit a signed transaction and immediately get its hash — no wait for execution.
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: broadcast_tx_async
       summary: Send transaction asynchronously
-      description: Submits a transaction to the network without waiting for its execution. Requires a freshly signed transaction; the default example is illustrative and is not part of the live audit.
+      description: Submit a signed transaction and immediately get its hash — no wait for execution.
       requestBody:
         required: true
         content:

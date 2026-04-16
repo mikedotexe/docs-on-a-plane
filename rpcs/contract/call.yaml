@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: Call Function"
-  description: Call a contract method on a NEAR account
+  title: "NEAR Protocol RPC: Call contract function"
+  description: Invoke a contract view method without gas or state changes — reads computed values from contract logic.
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: call_function
       summary: Call contract function
-      description: Execute a view method on a smart contract without modifying state
+      description: Invoke a contract view method without gas or state changes — reads computed values from contract logic.
       requestBody:
         required: true
         content:

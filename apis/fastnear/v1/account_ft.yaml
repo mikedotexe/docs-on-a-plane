@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: FastNEAR API - V1 Account FT
   version: 3.0.3
-  description: Fetch the v1 indexed fungible token balance rows for one account.
+  description: Fetch an account's fungible token balance rows, each with contract ID, balance, and last-update block height.
 paths:
   /v1/account/{account_id}/ft:
     get:
-      description: Fetch the v1 indexed fungible token balance rows for one account.
+      description: Fetch an account's fungible token balance rows, each with contract ID, balance, and last-update block height.
       operationId: account_ft_v1
       parameters:
         - description: NEAR account ID to inspect.

@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: Get light client execution proof"
-  description: Returns the proofs for a transaction execution
+  description: "Fetch a Merkle proof of transaction or receipt inclusion — the EXPERIMENTAL alias of `light_client_proof`."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: EXPERIMENTAL_light_client_proof
       summary: Get light client execution proof
-      description: Returns the proofs for a transaction execution
+      description: "Fetch a Merkle proof of transaction or receipt inclusion — the EXPERIMENTAL alias of `light_client_proof`."
       requestBody:
         required: true
         content:

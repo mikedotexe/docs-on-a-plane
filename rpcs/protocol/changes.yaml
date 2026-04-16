@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: Get state changes"
-  description: "Returns changes for a given account, contract or contract code for given block height or hash"
+  description: "Fetch detailed state changes in a block — filter by account, key prefix, or change type."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: changes
       summary: Get state changes
-      description: "Returns changes for a given account, contract or contract code for given block height or hash"
+      description: "Fetch detailed state changes in a block — filter by account, key prefix, or change type."
       requestBody:
         required: true
         content:

@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: Transaction Status"
-  description: Check the status and details of a transaction
+  title: "NEAR Protocol RPC: Get transaction status"
+  description: "Check a transaction's final outcome by hash — succeeded, failed, or still unresolved."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -12,8 +12,8 @@ paths:
   /:
     post:
       operationId: tx_status
-      summary: Check transaction status
-      description: Get the status and details of a transaction
+      summary: Get transaction status
+      description: "Check a transaction's final outcome by hash — succeeded, failed, or still unresolved."
       requestBody:
         required: true
         content:

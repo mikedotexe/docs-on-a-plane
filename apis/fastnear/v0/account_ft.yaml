@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: FastNEAR API - V0 Account FT
   version: 3.0.3
-  description: Retrieve the indexed fungible token contract IDs for an account. This v0 route does not return balances.
+  description: Fetch the fungible token contract IDs an account has held — contract IDs only, no balances.
 paths:
   /v0/account/{account_id}/ft:
     get:
-      description: Retrieve the indexed fungible token contract IDs for an account. This v0 route does not return balances.
+      description: Fetch the fungible token contract IDs an account has held — contract IDs only, no balances.
       operationId: account_ft_v0
       parameters:
         - description: NEAR account ID to inspect.

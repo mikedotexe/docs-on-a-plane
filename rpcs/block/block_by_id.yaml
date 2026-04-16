@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: Block by ID"
-  description: Retrieve block data using a specific block hash
+  title: "NEAR Protocol RPC: Get block by hash"
+  description: "Fetch a block's header and chunk summaries by its SHA-256 hash."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -12,8 +12,8 @@ paths:
   /:
     post:
       operationId: block_by_id
-      summary: Get block by ID
-      description: Retrieves block details using a specific block hash
+      summary: Get block by hash
+      description: "Fetch a block's header and chunk summaries by its SHA-256 hash."
       x-fastnear-interaction:
         kind: rpc-block-by-id
       x-hideReplay: true

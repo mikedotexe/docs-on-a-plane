@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: Network Information"
-  description: Retrieve information about the NEAR Protocol network and connected peers
+  title: "NEAR Protocol RPC: Get network info"
+  description: "List the node's active peer connections and the block producers it currently tracks."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -12,8 +12,8 @@ paths:
   /:
     post:
       operationId: network_info
-      summary: Get network information
-      description: "Retrieves information about the network and connected peers including active connections, peer addresses, and network configuration"
+      summary: Get network info
+      description: "List the node's active peer connections and the block producers it currently tracks."
       requestBody:
         required: true
         content:

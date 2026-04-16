@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: Get detailed transaction status"
-  description: "Queries status of a transaction by hash, returning the final transaction result and details of all receipts"
+  description: "Fetch a transaction's full receipt tree and per-receipt outcomes — richer than `tx_status`."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: EXPERIMENTAL_tx_status
       summary: Get detailed transaction status
-      description: "Queries status of a transaction by hash, returning the final transaction result and details of all receipts"
+      description: "Fetch a transaction's full receipt tree and per-receipt outcomes — richer than `tx_status`."
       requestBody:
         required: true
         content:

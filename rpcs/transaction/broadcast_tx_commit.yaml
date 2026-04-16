@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: Broadcast Transaction Commit"
-  description: Send transaction and wait for it to be committed to the blockchain
+  title: "NEAR Protocol RPC: Send transaction and wait"
+  description: "Submit a signed transaction and wait for its commit — the legacy synchronous send, superseded by `send_tx`."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -12,8 +12,8 @@ paths:
   /:
     post:
       operationId: broadcast_tx_commit
-      summary: Send transaction and wait for commit
-      description: "Submits a transaction and waits until it's fully committed to the blockchain. Requires a freshly signed transaction; the default example is illustrative and is not part of the live audit."
+      summary: Send transaction and wait
+      description: "Submit a signed transaction and wait for its commit — the legacy synchronous send, superseded by `send_tx`."
       requestBody:
         required: true
         content:

@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: Chunk by Hash"
-  description: Retrieve chunk data using a specific chunk hash
+  title: "NEAR Protocol RPC: Get chunk by hash"
+  description: "Fetch a single chunk's transactions and receipts by its content hash."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: chunk_by_hash
       summary: Get chunk by hash
-      description: Retrieves chunk details using a specific chunk hash
+      description: "Fetch a single chunk's transactions and receipts by its content hash."
       requestBody:
         required: true
         content:

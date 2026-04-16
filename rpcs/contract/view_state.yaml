@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: View Contract State"
-  description: Query contract state data for a NEAR account
+  title: "NEAR Protocol RPC: View contract state"
+  description: "Fetch the raw key-value state a contract has written, optionally filtered by key prefix."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: view_state
       summary: View contract state
-      description: Retrieves the state (key-value pairs) stored for a contract account
+      description: "Fetch the raw key-value state a contract has written, optionally filtered by key prefix."
       requestBody:
         required: true
         content:

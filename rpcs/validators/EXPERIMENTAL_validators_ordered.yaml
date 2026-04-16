@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: Get validators ordered"
-  description: Returns the current epoch validators ordered in the block producer order with repetition
+  description: List validators ordered by stake size at a chosen block — broader than just the current active set.
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: EXPERIMENTAL_validators_ordered
       summary: Get validators ordered
-      description: Returns the current epoch validators ordered in the block producer order with repetition
+      description: List validators ordered by stake size at a chosen block — broader than just the current active set.
       requestBody:
         required: true
         content:

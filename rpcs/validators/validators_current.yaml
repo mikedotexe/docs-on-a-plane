@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: Current Validators"
-  description: Retrieve information about the current validator set
+  title: "NEAR Protocol RPC: Get current validators"
+  description: "Fetch the active validator set for the current epoch, with stakes and performance stats."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: validators_current
       summary: Get current validators
-      description: Retrieves the list of current validators and their details
+      description: "Fetch the active validator set for the current epoch, with stakes and performance stats."
       requestBody:
         required: true
         content:

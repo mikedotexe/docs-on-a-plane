@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: Get block effects"
-  description: Returns changes in block for given block height or hash over all transactions for all types
+  description: "Summarize every state change in a block — which accounts, keys, and contract-state entries were touched."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: block_effects
       summary: Get block effects
-      description: Returns changes in block for given block height or hash over all transactions for all types
+      description: "Summarize every state change in a block — which accounts, keys, and contract-state entries were touched."
       x-fastnear-interaction:
         kind: rpc-block-effects
       x-hideReplay: true

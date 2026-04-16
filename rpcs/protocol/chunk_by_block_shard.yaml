@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: Chunk by Block ID and Shard ID"
-  description: Retrieve chunk data using block ID and shard ID coordinates
+  title: "NEAR Protocol RPC: Get chunk by block and shard"
+  description: "Fetch a single chunk's transactions and receipts by its parent block plus shard index."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -12,8 +12,8 @@ paths:
   /:
     post:
       operationId: chunk_by_block_shard
-      summary: Get chunk by block ID and shard ID
-      description: Retrieves chunk details using block ID and shard ID coordinates
+      summary: Get chunk by block and shard
+      description: "Fetch a single chunk's transactions and receipts by its parent block plus shard index."
       requestBody:
         required: true
         content:

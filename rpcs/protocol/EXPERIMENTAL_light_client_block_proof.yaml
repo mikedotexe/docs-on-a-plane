@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: Get light client block proof"
-  description: Returns the proofs for a transaction execution
+  description: "Fetch a Merkle proof that a block is included in the light client's verified chain."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: EXPERIMENTAL_light_client_block_proof
       summary: Get light client block proof
-      description: Returns the proofs for a transaction execution
+      description: "Fetch a Merkle proof that a block is included in the light client's verified chain."
       requestBody:
         required: true
         content:

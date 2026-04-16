@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: Node Status"
-  description: Retrieve detailed information about the current status of a NEAR Protocol node
+  title: "NEAR Protocol RPC: Get node status"
+  description: "Fetch a node's binary version, sync progress, and head block in one snapshot."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: status
       summary: Get node status
-      description: "Retrieves current status of the node including sync info, validator status and build information"
+      description: "Fetch a node's binary version, sync progress, and head block in one snapshot."
       requestBody:
         required: true
         content:

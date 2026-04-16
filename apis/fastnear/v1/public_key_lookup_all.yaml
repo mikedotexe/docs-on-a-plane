@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: FastNEAR API - V1 Public Key Lookup (All)
   version: 3.0.3
-  description: Fetch every indexed account tied to a public key. This v1 route currently uses the same response shape as the v0 route.
+  description: Fetch every account tied to a public key — full-access and limited-access keys together.
 paths:
   /v1/public_key/{public_key}/all:
     get:
-      description: Fetch every indexed account tied to a public key. This v1 route currently uses the same response shape as the v0 route.
+      description: Fetch every account tied to a public key — full-access and limited-access keys together.
       operationId: lookup_by_public_key_all_v1
       parameters:
         - description: NEAR public key in `ed25519:...` or `secp256k1:...` form.

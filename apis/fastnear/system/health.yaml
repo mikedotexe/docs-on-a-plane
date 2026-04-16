@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: FastNEAR API - Health
   version: 3.0.3
-  description: Use this lightweight probe to confirm the FastNear API is healthy.
+  description: "Ping the FastNEAR API for liveness — returns `{status: ok}` when healthy."
 paths:
   /health:
     get:
-      description: Use this lightweight probe to confirm the FastNear API is healthy.
+      description: "Ping the FastNEAR API for liveness — returns `{status: ok}` when healthy."
       operationId: get_health
       parameters:
         - description: Optional API key forwarded by embedded portal clients. The public FastNEAR API does not require it.

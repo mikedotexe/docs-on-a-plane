@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: View account"
-  description: Queries details for a NEAR account
+  description: "Fetch an account's balance, storage usage, and code hash at a chosen block or finality."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: view_account
       summary: View account
-      description: Retrieves detailed information about a NEAR account including balance and storage usage
+      description: "Fetch an account's balance, storage usage, and code hash at a chosen block or finality."
       x-fastnear-interaction:
         kind: rpc-view-account
       x-hideReplay: true

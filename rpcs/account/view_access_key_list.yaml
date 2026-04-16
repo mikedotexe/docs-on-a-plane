@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: View Access Key List"
-  description: Query all access keys for a NEAR account
+  title: "NEAR Protocol RPC: View access key list"
+  description: "Fetch every access key attached to an account, each with its permissions and nonce."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -12,8 +12,8 @@ paths:
   /:
     post:
       operationId: view_access_key_list
-      summary: View all account access keys
-      description: Retrieves a list of all access keys for a NEAR account
+      summary: View access key list
+      description: "Fetch every access key attached to an account, each with its permissions and nonce."
       x-fastnear-interaction:
         kind: rpc-view-access-key-list
       x-hideReplay: true

@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: Block by Height"
-  description: Retrieve block data using a specific block height
+  title: "NEAR Protocol RPC: Get block by height"
+  description: "Fetch a block's header and chunk summaries by its height in the chain."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: block_by_height
       summary: Get block by height
-      description: Retrieves block details using a specific block height (number)
+      description: "Fetch a block's header and chunk summaries by its height in the chain."
       x-fastnear-interaction:
         kind: rpc-block-by-height
       x-hideReplay: true

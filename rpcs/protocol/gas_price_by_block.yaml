@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: Gas Price By Block"
-  description: Retrieve gas price information for a specific block
+  title: "NEAR Protocol RPC: Get gas price by block"
+  description: "Fetch the chain-wide gas price at a chosen historical block, by height or hash."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: gas_price_by_block
       summary: Get gas price by block
-      description: Retrieves gas price information for a specific block
+      description: "Fetch the chain-wide gas price at a chosen historical block, by height or hash."
       requestBody:
         required: true
         content:

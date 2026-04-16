@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: Validators By Epoch"
-  description: Retrieve information about validators for a specific epoch
+  title: "NEAR Protocol RPC: Get validators by epoch"
+  description: "Fetch the validator set for a chosen past epoch, selected by epoch-start block height or hash."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: validators_by_epoch
       summary: Get validators by epoch
-      description: Retrieves the list of validators and their details for a specific epoch
+      description: "Fetch the validator set for a chosen past epoch, selected by epoch-start block height or hash."
       requestBody:
         required: true
         content:

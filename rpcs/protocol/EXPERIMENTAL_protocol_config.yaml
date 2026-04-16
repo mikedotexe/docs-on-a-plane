@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: Get protocol config"
-  description: "A configuration that defines the protocol-level parameters such as gas/storage costs, limits, feature flags, and other settings"
+  description: "Fetch the runtime protocol config at a chosen block — gas costs, storage prices, and limits currently in force."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: EXPERIMENTAL_protocol_config
       summary: Get protocol config
-      description: "A configuration that defines the protocol-level parameters such as gas/storage costs, limits, feature flags, and other settings"
+      description: "Fetch the runtime protocol config at a chosen block — gas costs, storage prices, and limits currently in force."
       requestBody:
         required: true
         content:

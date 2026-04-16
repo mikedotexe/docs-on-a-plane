@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: Get maintenance windows"
-  description: Returns the future windows for maintenance in current epoch for the specified account
+  description: Find upcoming block ranges where a validator can safely restart without missing block production.
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: maintenance_windows
       summary: Get maintenance windows
-      description: Returns the future windows for maintenance in current epoch for the specified account
+      description: Find upcoming block ranges where a validator can safely restart without missing block production.
       requestBody:
         required: true
         content:

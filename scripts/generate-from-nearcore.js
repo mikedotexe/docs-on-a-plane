@@ -307,8 +307,8 @@ function buildOperationYaml(spec, op, existingYaml) {
   const postExtensions = op.extensions ? clone(op.extensions) : {};
   const postOperation = {
     operationId: op.operationId,
-    summary: existingYaml?.paths?.['\/']?.post?.summary || op.summary,
-    description: existingYaml?.paths?.['\/']?.post?.description || op.description,
+    summary: op.summary || existingYaml?.paths?.['\/']?.post?.summary,
+    description: op.description || existingYaml?.paths?.['\/']?.post?.description,
     ...postExtensions,
     requestBody: {
       required: true,
@@ -334,8 +334,8 @@ function buildOperationYaml(spec, op, existingYaml) {
   const doc = {
     openapi: '3.1.0',
     info: {
-      title: existingYaml?.info?.title || `NEAR Protocol RPC: ${op.summary}`,
-      description: existingYaml?.info?.description || op.description,
+      title: `NEAR Protocol RPC: ${op.summary}`,
+      description: op.description || existingYaml?.info?.description,
       version: existingYaml?.info?.version || '1.0.0',
     },
     servers: DEFAULT_SERVERS,

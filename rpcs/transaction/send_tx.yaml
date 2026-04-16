@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: Send transaction"
-  description: Sends transaction and returns the guaranteed execution status and results
+  description: Submit a signed transaction and wait for its final execution outcome — the current synchronous send.
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: send_tx
       summary: Send transaction
-      description: Sends transaction and returns the guaranteed execution status and results. Requires a freshly signed transaction; the default example is illustrative and is not part of the live audit.
+      description: Submit a signed transaction and wait for its final execution outcome — the current synchronous send.
       requestBody:
         required: true
         content:

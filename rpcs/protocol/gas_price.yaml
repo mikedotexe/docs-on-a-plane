@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: Gas Price"
-  description: Retrieve current gas price information
+  title: "NEAR Protocol RPC: Get gas price"
+  description: Fetch the current chain-wide gas price for the most recent block.
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -12,8 +12,8 @@ paths:
   /:
     post:
       operationId: gas_price
-      summary: Get current gas price
-      description: Retrieves information about the current gas price
+      summary: Get gas price
+      description: Fetch the current chain-wide gas price for the most recent block.
       requestBody:
         required: true
         content:

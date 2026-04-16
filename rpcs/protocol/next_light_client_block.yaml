@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: Get next light client block"
-  description: Returns the next light client block
+  description: "Advance a light client's verified chain by fetching the next block header after a known head."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: next_light_client_block
       summary: Get next light client block
-      description: Returns the next light client block
+      description: "Advance a light client's verified chain by fetching the next block header after a known head."
       requestBody:
         required: true
         content:

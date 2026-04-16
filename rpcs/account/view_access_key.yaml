@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: View Access Key"
-  description: Query details of a specific access key for a NEAR account
+  title: "NEAR Protocol RPC: View access key"
+  description: "Fetch one access key's permissions and nonce by public key on a given account."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -12,8 +12,8 @@ paths:
   /:
     post:
       operationId: view_access_key
-      summary: View account access key
-      description: Retrieves information about a specific access key for a NEAR account
+      summary: View access key
+      description: "Fetch one access key's permissions and nonce by public key on a given account."
       x-fastnear-interaction:
         kind: rpc-view-access-key
       x-hideReplay: true

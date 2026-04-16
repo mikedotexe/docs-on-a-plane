@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: Node Health"
-  description: Check the health status of a NEAR Protocol node
+  title: "NEAR Protocol RPC: Check node health"
+  description: "Ping a node for liveness — returns `null` on success, an error on unhealthy state."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: health
       summary: Check node health
-      description: "Performs a health check on the node to determine if it's operating correctly"
+      description: "Ping a node for liveness — returns `null` on success, an error on unhealthy state."
       requestBody:
         required: true
         content:
