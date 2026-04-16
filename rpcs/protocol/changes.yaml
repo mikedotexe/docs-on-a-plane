@@ -33,22 +33,7 @@ paths:
                   enum: [changes]
                 params:
                   type: object
-                  required: [finality, changes_type, account_ids]
-                  properties:
-                    finality:
-                      type: string
-                      enum: [final, near-final, optimistic]
-                      description: Block finality
-                    changes_type:
-                      type: string
-                      enum: [account_changes]
-                      description: State change selector used by this example
-                    account_ids:
-                      type: array
-                      description: Accounts whose state changes should be returned
-                      items:
-                        type: string
-                        description: NEAR account ID
+                  description: One of multiple possible types
             examples:
               mainnet:
                 summary: Get state changes (Mainnet)
@@ -59,8 +44,7 @@ paths:
                   params:
                     finality: final
                     changes_type: account_changes
-                    account_ids:
-                      - root.near
+                    account_ids: [root.near]
               testnet:
                 summary: Get state changes (Testnet)
                 value:
@@ -70,8 +54,7 @@ paths:
                   params:
                     finality: final
                     changes_type: account_changes
-                    account_ids:
-                      - root.testnet
+                    account_ids: [root.testnet]
       responses:
         200:
           description: Successful response

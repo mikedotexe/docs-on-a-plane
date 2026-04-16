@@ -12,7 +12,7 @@ paths:
         content:
           application/json:
             example:
-              asc: false
+              asc: true
               include_metadata: false
               key: graph/follow/sleet.near
               limit: 50

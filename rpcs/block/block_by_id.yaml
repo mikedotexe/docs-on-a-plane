@@ -49,7 +49,7 @@ paths:
                   id: fastnear
                   method: block
                   params:
-                    block_id: 6sddgq8nkENAz4f8qR72qxRPM25QWNBVMrkYr63DgC2E
+                    block_id: EPnLgE7iEq9s7yTkos96M3cWymH5avBAPm3qx3NXqR8H
               testnet:
                 summary: Get block by hash (Testnet)
                 value:
@@ -57,7 +57,7 @@ paths:
                   id: fastnear
                   method: block
                   params:
-                    block_id: Ayfw9wu3T3zEqCbrvq9CuKmGmuyiJiETvwCApXZHmCho
+                    block_id: CoPszhGFqcx9L1HQYM62g3UjxMpuZD8RiZL6QdpBZXA4
       responses:
         200:
           description: Successful response

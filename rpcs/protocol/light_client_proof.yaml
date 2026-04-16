@@ -45,7 +45,13 @@ paths:
                       description: Base58-encoded hash
                     type:
                       type: string
-                      enum: [transaction]
+                      enum: [receipt]
+                    receipt_id:
+                      type: string
+                      description: Base58-encoded hash
+                    receiver_id:
+                      type: string
+                      description: NEAR account ID
                   required: [light_client_head]
             examples:
               mainnet:
@@ -56,9 +62,9 @@ paths:
                   method: light_client_proof
                   params:
                     type: transaction
-                    transaction_hash: 4EQZ5qoEJUbz8SRNkNwrAPtsn2VFhg9Ci1weaNNpiuR7
-                    sender_id: intents.near
-                    light_client_head: 6sddgq8nkENAz4f8qR72qxRPM25QWNBVMrkYr63DgC2E
+                    transaction_hash: ESShk21GZb6cgFRoJyEJqdJXuoP72fuCmCn6pNMhXFC7
+                    sender_id: 00000000012.near
+                    light_client_head: AF2yY9x1SkCsPWpgfXa4RvnEY99YeSEExBZZ4ouiwoa1
               testnet:
                 summary: Testnet Light Client Proof
                 value:

@@ -353,7 +353,7 @@ export const DOCS_ENHANCEMENTS = {
           "global-key-history": {
             "bodyByNetwork": {
               "mainnet": {
-                "asc": false,
+                "asc": true,
                 "include_metadata": false,
                 "key": "graph/follow/sleet.near",
                 "limit": 50
@@ -391,10 +391,10 @@ export const DOCS_ENHANCEMENTS = {
             },
             "bodyByNetwork": {
               "mainnet": {
-                "asc": false,
+                "asc": true,
                 "include_metadata": true,
-                "key_prefix": "graph/follow/",
-                "limit": 50
+                "key_prefix": "graph/follow/sleet.near",
+                "limit": 10
               },
               "testnet": {
                 "asc": false,
@@ -719,7 +719,7 @@ export const DOCS_ENHANCEMENTS = {
           "genesis-chunk": {
             "path": {
               "block_height": {
-                "mainnet": "9820210",
+                "mainnet": "50000000",
                 "testnet": "42376888"
               },
               "shard_id": {
@@ -746,7 +746,7 @@ export const DOCS_ENHANCEMENTS = {
           "genesis-shard": {
             "path": {
               "block_height": {
-                "mainnet": "9820210",
+                "mainnet": "50000000",
                 "testnet": "42376888"
               },
               "shard_id": {

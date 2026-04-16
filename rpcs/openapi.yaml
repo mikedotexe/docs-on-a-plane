@@ -61,7 +61,7 @@ paths:
   /light_client_proof:
     $ref: './protocol/light_client_proof.yaml#/paths/~1'
   /metrics:
-    $ref: './protocol/metrics.yaml#/paths/~1metrics'
+    $ref: './protocol/metrics.yaml#/paths/~1'
   /network_info:
     $ref: './protocol/network_info.yaml#/paths/~1'
   /status:
@@ -108,3 +108,4 @@ paths:
     $ref: './validators/validators_by_epoch.yaml#/paths/~1'
   /EXPERIMENTAL_validators_ordered:
     $ref: './validators/EXPERIMENTAL_validators_ordered.yaml#/paths/~1'
+

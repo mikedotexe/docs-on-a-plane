@@ -161,7 +161,7 @@ const OPERATIONS = [
     description: 'Returns block details for a given block height',
     exampleParamsByNetwork: {
       mainnet: {
-        block_id: 193543361,
+        block_id: 9820210,
       },
       testnet: {
         block_id: 245254793,
@@ -182,7 +182,7 @@ const OPERATIONS = [
     description: 'Returns block details for a given block hash',
     exampleParamsByNetwork: {
       mainnet: {
-        block_id: 'CU1KcVSuYAZUiehn7TnCxSdpb3RGoHxK1hABC5AKKo2Q',
+        block_id: 'EPnLgE7iEq9s7yTkos96M3cWymH5avBAPm3qx3NXqR8H',
       },
       testnet: {
         block_id: 'CoPszhGFqcx9L1HQYM62g3UjxMpuZD8RiZL6QdpBZXA4',
@@ -203,7 +203,7 @@ const OPERATIONS = [
     description: 'Returns changes in block for given block height or hash over all transactions for all types',
     exampleParamsByNetwork: {
       mainnet: {
-        block_id: 193543361,
+        block_id: 9820210,
       },
       testnet: {
         block_id: 245254793,
@@ -278,6 +278,11 @@ const OPERATIONS = [
     operationId: 'chunk_by_hash',
     summary: 'Get chunk by hash',
     description: 'Returns details of a specific chunk by its hash',
+    exampleParamsByNetwork: {
+      mainnet: {
+        chunk_id: 'CUc7UcYGcXwu5Y6UqEkkS6UbffHN4NNHhh5XLRHV8kLu',
+      },
+    },
   },
   {
     type: 'chunk_variant',
@@ -287,6 +292,12 @@ const OPERATIONS = [
     operationId: 'chunk_by_block_shard',
     summary: 'Get chunk by block and shard',
     description: 'Returns details of a specific chunk by block ID and shard ID',
+    exampleParamsByNetwork: {
+      mainnet: {
+        block_id: 9820210,
+        shard_id: 0,
+      },
+    },
   },
   {
     type: 'gas_variant',
@@ -332,6 +343,14 @@ const OPERATIONS = [
     operationId: 'light_client_proof',
     summary: 'Get light client proof',
     description: 'Returns the proofs for a transaction execution',
+    exampleParamsByNetwork: {
+      mainnet: {
+        type: 'transaction',
+        transaction_hash: 'ESShk21GZb6cgFRoJyEJqdJXuoP72fuCmCn6pNMhXFC7',
+        sender_id: '00000000012.near',
+        light_client_head: 'Fz7Koem4SW7EZ1FB1peDP2XHdF6qZN8sZvkjEQwrQURa',
+      },
+    },
   },
   {
     type: 'custom',
@@ -433,6 +452,12 @@ const OPERATIONS = [
     operationId: 'tx_status',
     summary: 'Get transaction status',
     description: 'Queries status of a transaction by hash and returns the final transaction result',
+    exampleParamsByNetwork: {
+      mainnet: {
+        tx_hash: 'ESShk21GZb6cgFRoJyEJqdJXuoP72fuCmCn6pNMhXFC7',
+        sender_account_id: '00000000012.near',
+      },
+    },
   },
   {
     type: 'simple',
@@ -473,6 +498,13 @@ const OPERATIONS = [
     operationId: 'EXPERIMENTAL_tx_status',
     summary: 'Get detailed transaction status',
     description: 'Queries status of a transaction by hash, returning the final transaction result and details of all receipts',
+    exampleParamsByNetwork: {
+      mainnet: {
+        tx_hash: 'ESShk21GZb6cgFRoJyEJqdJXuoP72fuCmCn6pNMhXFC7',
+        sender_account_id: '00000000012.near',
+        wait_until: 'EXECUTED_OPTIMISTIC',
+      },
+    },
   },
   {
     type: 'simple',
@@ -482,6 +514,11 @@ const OPERATIONS = [
     operationId: 'EXPERIMENTAL_receipt',
     summary: 'Get receipt by ID',
     description: 'Fetches a receipt by its ID (as is, without a status or execution outcome)',
+    exampleParamsByNetwork: {
+      mainnet: {
+        receipt_id: 'FcFKrKQziMPCgYMFiLMZwecBtA7vqxdkatkhc1j3GYj8',
+      },
+    },
   },
   {
     type: 'simple',
@@ -500,6 +537,12 @@ const OPERATIONS = [
     operationId: 'EXPERIMENTAL_congestion_level',
     summary: 'Get congestion level',
     description: 'Queries the congestion level of a shard',
+    exampleParamsByNetwork: {
+      mainnet: {
+        block_id: 9820210,
+        shard_id: 0,
+      },
+    },
   },
   {
     type: 'simple',
@@ -536,6 +579,14 @@ const OPERATIONS = [
     operationId: 'EXPERIMENTAL_light_client_proof',
     summary: 'Get light client execution proof',
     description: 'Returns the proofs for a transaction execution',
+    exampleParamsByNetwork: {
+      mainnet: {
+        type: 'transaction',
+        transaction_hash: 'ESShk21GZb6cgFRoJyEJqdJXuoP72fuCmCn6pNMhXFC7',
+        sender_id: '00000000012.near',
+        light_client_head: 'Fz7Koem4SW7EZ1FB1peDP2XHdF6qZN8sZvkjEQwrQURa',
+      },
+    },
   },
 ];
 

@@ -308,7 +308,7 @@ paths:
         content:
           application/json:
             example:
-              asc: false
+              asc: true
               include_metadata: false
               key: graph/follow/sleet.near
               limit: 50
@@ -374,7 +374,7 @@ paths:
             example:
               asc: false
               include_metadata: true
-              key_prefix: graph/follow/
+              key_prefix: graph/follow/sleet.near
               limit: 50
             schema:
               $ref: "#/components/schemas/QueryRequest"

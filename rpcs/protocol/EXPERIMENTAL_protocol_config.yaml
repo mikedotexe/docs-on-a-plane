@@ -33,12 +33,7 @@ paths:
                   enum: [EXPERIMENTAL_protocol_config]
                 params:
                   type: object
-                  required: [finality]
-                  properties:
-                    finality:
-                      type: string
-                      enum: [final, near-final, optimistic]
-                      description: Block finality
+                  description: One of multiple possible types
             examples:
               mainnet:
                 summary: Get protocol config (Mainnet)

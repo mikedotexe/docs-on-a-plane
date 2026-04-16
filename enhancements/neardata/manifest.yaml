@@ -70,7 +70,7 @@ operations:
       genesis-chunk:
         path:
           block_height:
-            mainnet: "9820210"
+            mainnet: "50000000"
             testnet: "42376888"
           shard_id:
             default: "0"
@@ -89,7 +89,7 @@ operations:
       genesis-shard:
         path:
           block_height:
-            mainnet: "9820210"
+            mainnet: "50000000"
             testnet: "42376888"
           shard_id:
             default: "0"

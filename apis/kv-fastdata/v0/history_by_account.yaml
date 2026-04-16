@@ -22,7 +22,7 @@ paths:
             example:
               asc: false
               include_metadata: true
-              key_prefix: graph/follow/
+              key_prefix: graph/follow/sleet.near
               limit: 50
             schema:
               $ref: "#/components/schemas/QueryRequest"
