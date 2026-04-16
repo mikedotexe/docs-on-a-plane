@@ -45,7 +45,8 @@ paths:
                       description: Base58-encoded hash
                     type:
                       type: string
-                      enum: [receipt]
+                      enum: [transaction, receipt]
+                      description: Proof subject — `transaction` proves inclusion of the top-level transaction, `receipt` proves inclusion of a specific receipt produced during execution.
                     receipt_id:
                       type: string
                       description: Base58-encoded hash
