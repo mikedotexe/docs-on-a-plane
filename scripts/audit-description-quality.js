@@ -62,6 +62,11 @@ const ACTIVE_VERB_ALLOWLIST = new Set(
     "Redirects", "Scan", "Scans", "Load", "Loads", "Emit", "Emits", "Post",
     "Posts", "Ping", "Pings", "Store", "Stores", "Update", "Updates", "Refresh",
     "Refreshes", "Verify", "Verifies", "Track", "Tracks", "Index", "Indexes",
+    "Invoke", "Invokes", "Measure", "Measures", "Find", "Finds", "Advance",
+    "Advances", "Compute", "Computes", "Discover", "Discovers", "Match",
+    "Matches", "Trace", "Traces", "Compare", "Compares", "Diff", "Diffs",
+    "Walk", "Walks", "Select", "Selects", "Pull", "Pulls", "Decode", "Decodes",
+    "Encode", "Encodes", "Resolve", "Resolves", "Reveal", "Reveals",
   ].map((w) => w.toLowerCase())
 );
 
@@ -70,7 +75,8 @@ const CAPS_ALLOWLIST = new Set([
   "URL", "WASM", "JWT", "KV", "IPFS", "UTC", "TLS", "IPv4", "IPv6", "CORS",
   "DNS", "UUID", "POST", "GET", "PUT", "DELETE", "PATCH", "TCP", "UDP",
   "SHA", "SHA256", "SHA-256", "ED25519", "SECP256K1", "TCP/IP", "I/O", "CPU",
-  "GPU", "RAM", "JSON-RPC", "XFF", "CIDR", "gRPC",
+  "GPU", "RAM", "JSON-RPC", "XFF", "CIDR", "gRPC", "EXPERIMENTAL", "V0", "V1",
+  "V2", "V3", "ABI", "CLI", "SDK", "DAO", "DEX", "IPC", "GRPC", "SQL", "ORM",
 ]);
 
 const CAPS_TOKEN_RE = /\b[A-Z][A-Z0-9]{2,}\b/g;
