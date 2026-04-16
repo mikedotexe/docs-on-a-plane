@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: KV FastData API - Multi-Key Lookup
   version: 3.0.3
-  description: Returns the latest entry for each requested fully qualified key. Missing keys are represented as `null` entries in the response array.
+  description: Fetch the latest FastData row for up to 100 keys in a single request.
 paths:
   /v0/multi:
     post:
-      description: Returns the latest entry for each requested fully qualified key. Missing keys are represented as `null` entries in the response array.
+      description: Fetch the latest FastData row for up to 100 keys in a single request.
       operationId: multi
       requestBody:
         content:

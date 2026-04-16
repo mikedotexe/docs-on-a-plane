@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: FastNEAR API - V0 Account NFT
   version: 3.0.3
-  description: Returns only NFT contract account IDs that FastNEAR has indexed for the requested account. Unlike the v1 route, this response does not include `last_update_block_height` metadata.
+  description: Fetch the indexed NFT contract IDs associated with an account. This v0 route does not include block-height metadata.
 paths:
   /v0/account/{account_id}/nft:
     get:
-      description: Returns only NFT contract account IDs that FastNEAR has indexed for the requested account. Unlike the v1 route, this response does not include `last_update_block_height` metadata.
+      description: Fetch the indexed NFT contract IDs associated with an account. This v0 route does not include block-height metadata.
       operationId: account_nft_v0
       parameters:
         - description: NEAR account ID to inspect.

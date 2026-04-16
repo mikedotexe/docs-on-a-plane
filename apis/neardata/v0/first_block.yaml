@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: NEAR Data API - First Block
   version: 3.0.3
-  description: Returns a redirect to the canonical first block URL for the selected deployment. Clients that automatically follow redirects will receive the full block document instead.
+  description: This endpoint redirects to the canonical first block URL for the selected network.
 paths:
   /v0/first_block:
     get:
-      description: Returns a redirect to the canonical first block URL for the selected deployment. Clients that automatically follow redirects will receive the full block document instead.
+      description: This endpoint redirects to the canonical first block URL for the selected network.
       operationId: get_first_block
       parameters:
         - description: Optional FastNEAR subscription API key. Invalid values may return `401` before redirect handling.

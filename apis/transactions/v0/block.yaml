@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: Transactions API - Block Lookup
   version: 3.0.3
-  description: Returns a block row and optionally its transactions and receipts.
+  description: Fetch a block row by height or hash and optionally expand its transactions and receipts.
 paths:
   /v0/block:
     post:
-      description: Returns a block row and optionally its transactions and receipts.
+      description: Fetch a block row by height or hash and optionally expand its transactions and receipts.
       operationId: get_block
       requestBody:
         content:

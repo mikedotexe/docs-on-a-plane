@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: FastNEAR API - V1 FT Top Holders
   version: 3.0.3
-  description: Returns the top indexed accounts by balance for the requested fungible token.
+  description: Use this endpoint to inspect the indexed top holders for a fungible token contract.
 paths:
   /v1/ft/{token_id}/top:
     get:
-      description: Returns the top indexed accounts by balance for the requested fungible token.
+      description: Use this endpoint to inspect the indexed top holders for a fungible token contract.
       operationId: ft_top_v1
       parameters:
         - description: Fungible token contract account ID.

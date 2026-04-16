@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: Transactions API - Transactions by Hash
   version: 3.0.3
-  description: Returns up to 20 raw transaction payloads for the supplied transaction hashes.
+  description: Use this endpoint to fetch up to 20 indexed transactions by hash.
 paths:
   /v0/transactions:
     post:
-      description: Returns up to 20 raw transaction payloads for the supplied transaction hashes.
+      description: Use this endpoint to fetch up to 20 indexed transactions by hash.
       operationId: get_transactions
       requestBody:
         content:

@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: NEAR Data API - Block Chunk
   version: 3.0.3
-  description: Returns the chunk object for the requested shard ID, or `null` when that chunk is absent. Depending on deployment topology, the request may redirect to another host that owns the canonical archive range.
+  description: Fetch a single chunk for a given finalized block and shard ID.
 paths:
   /v0/block/{block_height}/chunk/{shard_id}:
     get:
-      description: Returns the chunk object for the requested shard ID, or `null` when that chunk is absent. Depending on deployment topology, the request may redirect to another host that owns the canonical archive range.
+      description: Fetch a single chunk for a given finalized block and shard ID.
       operationId: get_chunk
       parameters:
         - description: NEAR block height to retrieve.

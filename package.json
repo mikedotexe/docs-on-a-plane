@@ -21,6 +21,7 @@
     "audit:kv-fastdata-defaults": "node scripts/audit-kv-fastdata-defaults.js",
     "audit:neardata-defaults": "node scripts/audit-neardata-defaults.js",
     "audit:transactions-defaults": "node scripts/audit-transactions-defaults.js",
+    "audit:description-drift": "node scripts/audit-description-drift.js",
     "discover:fastnear-context": "node scripts/discover-fastnear-context.js",
     "discover:transfers-context": "node scripts/discover-transfers-context.js",
     "discover:kv-fastdata-context": "node scripts/discover-kv-fastdata-context.js",

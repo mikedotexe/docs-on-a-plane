@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: KV FastData API - History by Predecessor
   version: 3.0.3
-  description: Returns historical rows for one `predecessor_id` + `current_account_id` pair. Use `key` or `key_prefix` to narrow the search. `page_token` values are opaque and only valid when reused with the same endpoint and filters.
+  description: Fetch historical FastData rows for a single predecessor and target account.
 paths:
   /v0/history/{current_account_id}/{predecessor_id}:
     post:
-      description: Returns historical rows for one `predecessor_id` + `current_account_id` pair. Use `key` or `key_prefix` to narrow the search. `page_token` values are opaque and only valid when reused with the same endpoint and filters.
+      description: Fetch historical FastData rows for a single predecessor and target account.
       operationId: history_by_predecessor
       parameters:
         - description: Contract account whose FastData keys were written.

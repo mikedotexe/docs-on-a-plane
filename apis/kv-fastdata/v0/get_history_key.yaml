@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: KV FastData API - History by Exact Key
   version: 3.0.3
-  description: Returns historical rows for one exact key written by the selected predecessor to the selected contract.
+  description: This GET route is useful for simple exact-key lookups without a request body.
 paths:
   /v0/history/{current_account_id}/{predecessor_id}/{key}:
     get:
-      description: Returns historical rows for one exact key written by the selected predecessor to the selected contract.
+      description: This GET route is useful for simple exact-key lookups without a request body.
       operationId: get_history_key
       parameters:
         - description: Contract account whose FastData keys were written.

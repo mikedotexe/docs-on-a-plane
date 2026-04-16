@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: NEAR Data API - Last Optimistic Block
   version: 3.0.3
-  description: Returns a redirect to the canonical latest optimistic block URL for the current deployment. Clients that automatically follow redirects will receive the resulting block document instead.
+  description: This endpoint redirects to the latest optimistic block URL for the active deployment.
 paths:
   /v0/last_block/optimistic:
     get:
-      description: Returns a redirect to the canonical latest optimistic block URL for the current deployment. Clients that automatically follow redirects will receive the resulting block document instead.
+      description: This endpoint redirects to the latest optimistic block URL for the active deployment.
       operationId: get_last_block_optimistic
       parameters:
         - description: Optional FastNEAR subscription API key. Invalid values may return `401` before redirect handling.

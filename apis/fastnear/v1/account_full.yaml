@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: FastNEAR API - V1 Account Full
   version: 3.0.3
-  description: Returns staking, fungible token, NFT, and account-state information for the requested account. `state` remains nullable when the account state has not been recorded.
+  description: Fetch the combined indexed account view, including staking pools, FT balances, NFTs, and account state.
 paths:
   /v1/account/{account_id}/full:
     get:
-      description: Returns staking, fungible token, NFT, and account-state information for the requested account. `state` remains nullable when the account state has not been recorded.
+      description: Fetch the combined indexed account view, including staking pools, FT balances, NFTs, and account state.
       operationId: account_full_v1
       parameters:
         - description: NEAR account ID to inspect.

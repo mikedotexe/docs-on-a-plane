@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: FastNEAR API - Health
   version: 3.0.3
-  description: Returns `ok` when the service is healthy. When FastNEAR is degraded, the same `status` field carries a diagnostic string instead.
+  description: Use this lightweight probe to confirm the FastNear API is healthy.
 paths:
   /health:
     get:
-      description: Returns `ok` when the service is healthy. When FastNEAR is degraded, the same `status` field carries a diagnostic string instead.
+      description: Use this lightweight probe to confirm the FastNear API is healthy.
       operationId: get_health
       parameters:
         - description: Optional API key forwarded by embedded portal clients. The public FastNEAR API does not require it.

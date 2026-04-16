@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: FastNEAR API - Status
   version: 3.0.3
-  description: Returns the latest indexed sync heights, the indexed block timestamp, the measured sync latency, and the deployed FastNEAR API version.
+  description: Check the current indexed block height, latency, and deployed service version.
 paths:
   /status:
     get:
-      description: Returns the latest indexed sync heights, the indexed block timestamp, the measured sync latency, and the deployed FastNEAR API version.
+      description: Check the current indexed block height, latency, and deployed service version.
       operationId: get_status
       parameters:
         - description: Optional API key forwarded by embedded portal clients. The public FastNEAR API does not require it.

@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: NEAR Data API - Optimistic Block
   version: 3.0.3
-  description: Returns an optimistic block document when the deployment can serve it directly. Older or archive-only heights may redirect to a canonical finalized or archive URL instead.
+  description: Fetch an optimistic block document when the endpoint can serve it directly, or follow the documented redirect behavior when the deployment hands off to finalized or archive infrastructure.
 paths:
   /v0/block_opt/{block_height}:
     get:
-      description: Returns an optimistic block document when the deployment can serve it directly. Older or archive-only heights may redirect to a canonical finalized or archive URL instead.
+      description: Fetch an optimistic block document when the endpoint can serve it directly, or follow the documented redirect behavior when the deployment hands off to finalized or archive infrastructure.
       operationId: get_block_optimistic
       parameters:
         - description: NEAR block height to retrieve.

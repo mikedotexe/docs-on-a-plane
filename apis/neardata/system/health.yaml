@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: NEAR Data API - Health
   version: 3.0.3
-  description: Returns `ok` when the current deployment is healthy and `unhealthy` when the latest indexed block is too stale. Invalid API keys can be rejected upstream before the request reaches the app.
+  description: Check whether the neardata service is healthy for the current deployment.
 paths:
   /health:
     get:
-      description: Returns `ok` when the current deployment is healthy and `unhealthy` when the latest indexed block is too stale. Invalid API keys can be rejected upstream before the request reaches the app.
+      description: Check whether the neardata service is healthy for the current deployment.
       operationId: get_health
       parameters:
         - description: Optional FastNEAR subscription API key. Invalid values may return `401` before redirect handling.

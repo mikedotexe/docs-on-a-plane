@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: FastNEAR API - V0 Account Staking
   version: 3.0.3
-  description: Returns staking pool account IDs that FastNEAR has indexed for the requested account. Unlike the v1 route, this response does not include `last_update_block_height` metadata.
+  description: Fetch the staking pool account IDs FastNear has indexed for one account. This v0 route returns pool IDs only, without block-height metadata.
 paths:
   /v0/account/{account_id}/staking:
     get:
-      description: Returns staking pool account IDs that FastNEAR has indexed for the requested account. Unlike the v1 route, this response does not include `last_update_block_height` metadata.
+      description: Fetch the staking pool account IDs FastNear has indexed for one account. This v0 route returns pool IDs only, without block-height metadata.
       operationId: account_staking_v0
       parameters:
         - description: NEAR account ID to inspect.

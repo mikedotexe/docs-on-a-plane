@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: Transactions API - Receipt Lookup
   version: 3.0.3
-  description: Returns a receipt row and, when present, the associated raw transaction payload.
+  description: Use this endpoint to fetch a receipt row and the associated transaction when available.
 paths:
   /v0/receipt:
     post:
-      description: Returns a receipt row and, when present, the associated raw transaction payload.
+      description: Use this endpoint to fetch a receipt row and the associated transaction when available.
       operationId: get_receipt
       requestBody:
         content:

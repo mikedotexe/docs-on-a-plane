@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: Transactions API - Account History
   version: 3.0.3
-  description: Returns account transaction rows, an optional total count on the first page, and an optional resume token.
+  description: Fetch account transaction history with optional filters for signer, success status, and sort order.
 paths:
   /v0/account:
     post:
-      description: Returns account transaction rows, an optional total count on the first page, and an optional resume token.
+      description: Fetch account transaction history with optional filters for signer, success status, and sort order.
       operationId: get_account
       requestBody:
         content:

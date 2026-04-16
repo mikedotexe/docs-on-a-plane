@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: KV FastData API - History by Global Key
   version: 3.0.3
-  description: Returns historical FastData rows for one exact key across every indexed contract and predecessor. `page_token` values are opaque and only valid when reused with the same endpoint and filters.
+  description: Fetch the historical values for a selected key across accounts and predecessors.
 paths:
   /v0/history:
     post:
-      description: Returns historical FastData rows for one exact key across every indexed contract and predecessor. `page_token` values are opaque and only valid when reused with the same endpoint and filters.
+      description: Fetch the historical values for a selected key across accounts and predecessors.
       operationId: history_by_key
       requestBody:
         content:

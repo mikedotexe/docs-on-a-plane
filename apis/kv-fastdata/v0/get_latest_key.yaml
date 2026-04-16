@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: KV FastData API - Latest by Exact Key
   version: 3.0.3
-  description: Returns the latest row for one exact key written by the selected predecessor to the selected contract.
+  description: This GET route is useful for quick exact-key reads without a request body.
 paths:
   /v0/latest/{current_account_id}/{predecessor_id}/{key}:
     get:
-      description: Returns the latest row for one exact key written by the selected predecessor to the selected contract.
+      description: This GET route is useful for quick exact-key reads without a request body.
       operationId: get_latest_key
       parameters:
         - description: Contract account whose FastData keys were written.

@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: KV FastData API - Latest by Account
   version: 3.0.3
-  description: Returns the latest row for each `(predecessor_id, key)` pair written to the contract. `page_token` values are opaque and scoped to this endpoint, the contract account, and the active filters.
+  description: Fetch the latest FastData rows for one target account across all predecessor accounts.
 paths:
   /v0/latest/{current_account_id}:
     post:
-      description: Returns the latest row for each `(predecessor_id, key)` pair written to the contract. `page_token` values are opaque and scoped to this endpoint, the contract account, and the active filters.
+      description: Fetch the latest FastData rows for one target account across all predecessor accounts.
       operationId: latest_by_account
       parameters:
         - description: Contract account whose FastData keys were written.

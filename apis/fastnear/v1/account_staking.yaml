@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: FastNEAR API - V1 Account Staking
   version: 3.0.3
-  description: Returns staking pool rows for the requested account. `last_update_block_height` is nullable when FastNEAR has not recorded a recent indexed update for that pool relationship.
+  description: Retrieve staking pool rows for an account, including block-height metadata for each pool relationship.
 paths:
   /v1/account/{account_id}/staking:
     get:
-      description: Returns staking pool rows for the requested account. `last_update_block_height` is nullable when FastNEAR has not recorded a recent indexed update for that pool relationship.
+      description: Retrieve staking pool rows for an account, including block-height metadata for each pool relationship.
       operationId: account_staking_v1
       parameters:
         - description: NEAR account ID to inspect.

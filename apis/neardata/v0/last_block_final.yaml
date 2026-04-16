@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: NEAR Data API - Last Final Block
   version: 3.0.3
-  description: Returns a redirect to the canonical latest finalized block URL for the current deployment. Clients that automatically follow redirects will receive the full block document instead.
+  description: This endpoint redirects to the latest finalized block URL for the active deployment.
 paths:
   /v0/last_block/final:
     get:
-      description: Returns a redirect to the canonical latest finalized block URL for the current deployment. Clients that automatically follow redirects will receive the full block document instead.
+      description: This endpoint redirects to the latest finalized block URL for the active deployment.
       operationId: get_last_block_final
       parameters:
         - description: Optional FastNEAR subscription API key. Invalid values may return `401` before redirect handling.

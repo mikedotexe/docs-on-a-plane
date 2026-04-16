@@ -240,7 +240,7 @@ openapi: 3.0.3
 paths:
   /v0/all/{predecessor_id}:
     post:
-      description: Returns the latest row for each `(current_account_id, key)` pair written by the selected predecessor. `page_token` values are opaque and scoped to this endpoint and predecessor.
+      description: Fetch the latest values for all contracts touched by one predecessor account.
       operationId: all_by_predecessor
       parameters:
         - description: Calling account that wrote the FastData keys.
@@ -302,7 +302,7 @@ paths:
       x-fastnear-title: KV FastData API - All Latest Keys by Predecessor
   /v0/history:
     post:
-      description: Returns historical FastData rows for one exact key across every indexed contract and predecessor. `page_token` values are opaque and only valid when reused with the same endpoint and filters.
+      description: Fetch the historical values for a selected key across accounts and predecessors.
       operationId: history_by_key
       requestBody:
         content:
@@ -358,7 +358,7 @@ paths:
       x-fastnear-title: KV FastData API - History by Global Key
   /v0/history/{current_account_id}:
     post:
-      description: Returns historical rows for the requested contract account across all predecessors. `page_token` values are opaque and only valid when reused with the same endpoint and filters.
+      description: Fetch historical FastData rows for one target account across all predecessor accounts.
       operationId: history_by_account
       parameters:
         - description: Contract account whose FastData keys were written.
@@ -422,7 +422,7 @@ paths:
       x-fastnear-title: KV FastData API - History by Account
   /v0/history/{current_account_id}/{predecessor_id}:
     post:
-      description: Returns historical rows for one `predecessor_id` + `current_account_id` pair. Use `key` or `key_prefix` to narrow the search. `page_token` values are opaque and only valid when reused with the same endpoint and filters.
+      description: Fetch historical FastData rows for a single predecessor and target account.
       operationId: history_by_predecessor
       parameters:
         - description: Contract account whose FastData keys were written.
@@ -493,7 +493,7 @@ paths:
       x-fastnear-title: KV FastData API - History by Predecessor
   /v0/history/{current_account_id}/{predecessor_id}/{key}:
     get:
-      description: Returns historical rows for one exact key written by the selected predecessor to the selected contract.
+      description: This GET route is useful for simple exact-key lookups without a request body.
       operationId: get_history_key
       parameters:
         - description: Contract account whose FastData keys were written.
@@ -552,7 +552,7 @@ paths:
       x-fastnear-title: KV FastData API - History by Exact Key
   /v0/latest/{current_account_id}:
     post:
-      description: Returns the latest row for each `(predecessor_id, key)` pair written to the contract. `page_token` values are opaque and scoped to this endpoint, the contract account, and the active filters.
+      description: Fetch the latest FastData rows for one target account across all predecessor accounts.
       operationId: latest_by_account
       parameters:
         - description: Contract account whose FastData keys were written.
@@ -615,7 +615,7 @@ paths:
       x-fastnear-title: KV FastData API - Latest by Account
   /v0/latest/{current_account_id}/{predecessor_id}:
     post:
-      description: Returns the latest row for each key written by the selected predecessor to the requested contract. `page_token` values are opaque and scoped to this endpoint and filter set.
+      description: Fetch the latest FastData rows for a single predecessor and target account.
       operationId: latest_by_predecessor
       parameters:
         - description: Contract account whose FastData keys were written.
@@ -685,7 +685,7 @@ paths:
       x-fastnear-title: KV FastData API - Latest by Predecessor
   /v0/latest/{current_account_id}/{predecessor_id}/{key}:
     get:
-      description: Returns the latest row for one exact key written by the selected predecessor to the selected contract.
+      description: This GET route is useful for quick exact-key reads without a request body.
       operationId: get_latest_key
       parameters:
         - description: Contract account whose FastData keys were written.
@@ -744,7 +744,7 @@ paths:
       x-fastnear-title: KV FastData API - Latest by Exact Key
   /v0/multi:
     post:
-      description: Returns the latest entry for each requested fully qualified key. Missing keys are represented as `null` entries in the response array.
+      description: Fetch the latest FastData row for up to 100 keys in a single request.
       operationId: multi
       requestBody:
         content:

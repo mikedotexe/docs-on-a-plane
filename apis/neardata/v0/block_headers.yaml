@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: NEAR Data API - Block Headers
   version: 3.0.3
-  description: Returns the `block` object extracted from the full block response, not just the nested `header` sub-object. Depending on deployment topology, the request may redirect to another host that owns the canonical archive range.
+  description: Fetch the top-level block object for a finalized block, including the block header and chunk summaries.
 paths:
   /v0/block/{block_height}/headers:
     get:
-      description: Returns the `block` object extracted from the full block response, not just the nested `header` sub-object. Depending on deployment topology, the request may redirect to another host that owns the canonical archive range.
+      description: Fetch the top-level block object for a finalized block, including the block header and chunk summaries.
       operationId: get_block_headers
       parameters:
         - description: NEAR block height to retrieve.

@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: FastNEAR API - V1 Public Key Lookup
   version: 3.0.3
-  description: Returns account IDs currently associated with the supplied full-access public key. This v1 route currently uses the same `{ public_key, account_ids }` response shape as the v0 route.
+  description: Use the v1 endpoint for the newer namespace. It currently returns the same response shape as the v0 route.
 paths:
   /v1/public_key/{public_key}:
     get:
-      description: Returns account IDs currently associated with the supplied full-access public key. This v1 route currently uses the same `{ public_key, account_ids }` response shape as the v0 route.
+      description: Use the v1 endpoint for the newer namespace. It currently returns the same response shape as the v0 route.
       operationId: lookup_by_public_key_v1
       parameters:
         - description: NEAR public key in `ed25519:...` or `secp256k1:...` form.

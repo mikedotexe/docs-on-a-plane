@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: FastNEAR API - V1 Account NFT
   version: 3.0.3
-  description: Returns NFT contract rows for the requested account. `last_update_block_height` is nullable when FastNEAR has not recorded a recent indexed update for that contract relationship.
+  description: Fetch NFT contract rows for an account, including block-height metadata for each contract.
 paths:
   /v1/account/{account_id}/nft:
     get:
-      description: Returns NFT contract rows for the requested account. `last_update_block_height` is nullable when FastNEAR has not recorded a recent indexed update for that contract relationship.
+      description: Fetch NFT contract rows for an account, including block-height metadata for each contract.
       operationId: account_nft_v1
       parameters:
         - description: NEAR account ID to inspect.

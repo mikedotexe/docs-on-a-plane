@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: NEAR Data API - Block
   version: 3.0.3
-  description: Returns the finalized block document for the requested height, or `null` when the block does not exist within the requested archive segment. Depending on deployment topology, the request may redirect to another host that owns the canonical archive range.
+  description: Fetch the finalized block document for a given height, including all chunks and shard data.
 paths:
   /v0/block/{block_height}:
     get:
-      description: Returns the finalized block document for the requested height, or `null` when the block does not exist within the requested archive segment. Depending on deployment topology, the request may redirect to another host that owns the canonical archive range.
+      description: Fetch the finalized block document for a given height, including all chunks and shard data.
       operationId: get_block
       parameters:
         - description: NEAR block height to retrieve.

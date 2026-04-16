@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: KV FastData API - All Latest Keys by Predecessor
   version: 3.0.3
-  description: Returns the latest row for each `(current_account_id, key)` pair written by the selected predecessor. `page_token` values are opaque and scoped to this endpoint and predecessor.
+  description: Fetch the latest values for all contracts touched by one predecessor account.
 paths:
   /v0/all/{predecessor_id}:
     post:
-      description: Returns the latest row for each `(current_account_id, key)` pair written by the selected predecessor. `page_token` values are opaque and scoped to this endpoint and predecessor.
+      description: Fetch the latest values for all contracts touched by one predecessor account.
       operationId: all_by_predecessor
       parameters:
         - description: Calling account that wrote the FastData keys.
