@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: NEAR Data API - Block
   version: 3.0.3
-  description: Fetch the finalized block document for a given height, including all chunks and shard data.
+  description: Fetch a finalized block's full document at a chosen height — header plus every chunk and shard payload.
 paths:
   /v0/block/{block_height}:
     get:
-      description: Fetch the finalized block document for a given height, including all chunks and shard data.
+      description: Fetch a finalized block's full document at a chosen height — header plus every chunk and shard payload.
       operationId: get_block
       parameters:
         - description: NEAR block height to retrieve.

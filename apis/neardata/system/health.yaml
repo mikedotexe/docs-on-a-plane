@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: NEAR Data API - Health
   version: 3.0.3
-  description: Check whether the neardata service is healthy for the current deployment.
+  description: "Ping the neardata service for liveness — returns `{status: ok}` when healthy, errors otherwise."
 paths:
   /health:
     get:
-      description: Check whether the neardata service is healthy for the current deployment.
+      description: "Ping the neardata service for liveness — returns `{status: ok}` when healthy, errors otherwise."
       operationId: get_health
       parameters:
         - description: Optional FastNEAR subscription API key. Invalid values may return `401` before redirect handling.

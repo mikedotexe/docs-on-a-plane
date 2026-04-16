@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: NEAR Data API - Block Chunk
   version: 3.0.3
-  description: Fetch a single chunk for a given finalized block and shard ID.
+  description: Fetch one chunk — a single shard's transactions and incoming receipts — at a chosen block height.
 paths:
   /v0/block/{block_height}/chunk/{shard_id}:
     get:
-      description: Fetch a single chunk for a given finalized block and shard ID.
+      description: Fetch one chunk — a single shard's transactions and incoming receipts — at a chosen block height.
       operationId: get_chunk
       parameters:
         - description: NEAR block height to retrieve.
