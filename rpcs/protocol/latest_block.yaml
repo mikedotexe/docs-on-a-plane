@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: Latest Block"
-  description: "Retrieve the most recent block data from the NEAR blockchain"
+  description: "Fetch the latest final block — finality set automatically, no block ID needed."
   version: "1.0.0"
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -19,7 +19,7 @@ paths:
     post:
       operationId: latest_block
       summary: "Get latest block"
-      description: "Retrieves the most recent block from the blockchain"
+      description: "Fetch the latest final block — finality set automatically, no block ID needed."
       requestBody:
         required: true
         content:

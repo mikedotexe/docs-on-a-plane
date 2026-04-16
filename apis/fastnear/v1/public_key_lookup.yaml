@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: FastNEAR API - V1 Public Key Lookup
   version: 3.0.3
-  description: Fetch the indexed account IDs associated with a full-access public key.
+  description: Resolve a full-access public key to the indexed NEAR accounts that have registered it — V1 canonical lookup path.
 paths:
   /v1/public_key/{public_key}:
     get:
-      description: Fetch the indexed account IDs associated with a full-access public key.
+      description: Resolve a full-access public key to the indexed NEAR accounts that have registered it — V1 canonical lookup path.
       operationId: lookup_by_public_key_v1
       parameters:
         - description: NEAR public key in `ed25519:...` or `secp256k1:...` form.
