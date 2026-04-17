@@ -42,7 +42,7 @@ paths:
                       description: Include a Merkle proof for the queried state alongside the values.
                     prefix_base64:
                       type: string
-                      description: Base64-encoded storage key
+                      description: Base64-encoded storage key prefix. Use an empty string (`""`) to remove the prefix filter and return all matching contract state values. Large contracts can produce very large responses when no prefix is set.
                     request_type:
                       type: string
                       enum: [view_state]

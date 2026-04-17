@@ -39,7 +39,7 @@ paths:
                       description: NEAR account ID
                     args_base64:
                       type: string
-                      description: Base64-encoded method arguments
+                      description: 'Base64-encoded raw method arguments. JSON-based contracts typically expect UTF-8 bytes of the JSON payload; the example `e30=` is `{}`.'
                     method_name:
                       type: string
                       description: Name of the contract view method to invoke.

@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: Send transaction"
-  description: Submit a Base64-encoded signed transaction and wait for its final execution outcome — the current synchronous send.
+  description: Submit a freshly signed transaction and wait for its final execution outcome — the current synchronous send. Default examples are illustrative only and are not reusable signed payloads.
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: send_tx
       summary: Send transaction
-      description: Submit a Base64-encoded signed transaction and wait for its final execution outcome — the current synchronous send.
+      description: Submit a freshly signed transaction and wait for its final execution outcome — the current synchronous send. Default examples are illustrative only and are not reusable signed payloads.
       requestBody:
         required: true
         content:
@@ -36,7 +36,7 @@ paths:
                   properties:
                     signed_tx_base64:
                       type: string
-                      description: Base64-encoded signed transaction
+                      description: Base64-encoded signed transaction. Generate a fresh signed payload for the signing account immediately before submission or status lookup.
                     wait_until:
                       type: string
                       enum:
