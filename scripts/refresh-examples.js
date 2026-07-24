@@ -159,7 +159,7 @@ const UPDATES = [
       light_client_head:  { mainnet: d => d.blockHash, testnet: d => d.blockHash },
       sender_id:          { mainnet: d => d.senderId,  testnet: d => d.senderId },
       transaction_hash:   { mainnet: d => d.txHash,    testnet: d => d.txHash },
-      type:               { mainnet: () => 'transaction', testnet: () => 'transaction' },
+      type:               { mainnet: () => 'receipt', testnet: () => 'receipt' },
     },
   },
   {
@@ -168,7 +168,7 @@ const UPDATES = [
       light_client_head:  { mainnet: d => d.blockHash, testnet: d => d.blockHash },
       sender_id:          { mainnet: d => d.senderId,  testnet: d => d.senderId },
       transaction_hash:   { mainnet: d => d.txHash,    testnet: d => d.txHash },
-      type:               { mainnet: () => 'transaction', testnet: () => 'transaction' },
+      type:               { mainnet: () => 'receipt', testnet: () => 'receipt' },
     },
   },
   {

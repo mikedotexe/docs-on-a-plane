@@ -116,6 +116,7 @@ export const LEGACY_RPC_REFERENCE_ROUTE = {
   "/reference/operation/next_light_client_block": "/rpcs/protocol/next_light_client_block/other/next_light_client_block",
   "/reference/operation/status": "/rpcs/protocol/status/other/status",
   "/reference/operation/EXPERIMENTAL_receipt": "/rpcs/transaction/EXPERIMENTAL_receipt/other/EXPERIMENTAL_receipt",
+  "/reference/operation/EXPERIMENTAL_receipt_to_tx": "/rpcs/transaction/EXPERIMENTAL_receipt_to_tx/other/EXPERIMENTAL_receipt_to_tx",
   "/reference/operation/EXPERIMENTAL_tx_status": "/rpcs/transaction/EXPERIMENTAL_tx_status/other/EXPERIMENTAL_tx_status",
   "/reference/operation/broadcast_tx_async": "/rpcs/transaction/broadcast_tx_async/other/broadcast_tx_async",
   "/reference/operation/broadcast_tx_commit": "/rpcs/transaction/broadcast_tx_commit/other/broadcast_tx_commit",

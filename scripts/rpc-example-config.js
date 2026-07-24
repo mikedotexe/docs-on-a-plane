@@ -106,10 +106,25 @@ const CURATED_RPC_EXAMPLE_PARAMS = {
       request_type: 'view_state',
     },
     testnet: {
-      account_id: 'v1.signer-prod.testnet',
+      // v1.signer-prod.testnet returns TOO_LARGE_CONTRACT_STATE; counter.testnet
+      // has a single small key that an empty prefix returns in full.
+      account_id: 'counter.testnet',
       finality: 'final',
-      prefix_base64: 'U1RBVEU=',
+      prefix_base64: '',
       request_type: 'view_state',
+    },
+  },
+  EXPERIMENTAL_receipt_to_tx: {
+    // Resolves only on the archival endpoint (servers set to archival-rpc) with a
+    // block_height anchor near the receipt; without block_height the node returns
+    // UNKNOWN_RECEIPT.
+    mainnet: {
+      receipt_id: 'ETMK9HmPsAYcNxfSXBejMWQs57W4Ph5HDYoYhDMpotQn',
+      block_height: 194263442,
+    },
+    testnet: {
+      receipt_id: '9uJmhNCLRgsFncH3anffPLE1YsZCPTyAZrBdekc3vTaZ',
+      block_height: 246016180,
     },
   },
 };
@@ -137,6 +152,26 @@ const MANUAL_RPC_EXAMPLE_OVERRIDES = {
     mainnet: { finality: 'optimistic' },
     testnet: { finality: 'optimistic' },
   },
+  block_effects: {
+    // Evergreen: query the latest block's effects instead of a pinned block_id
+    // that ages out of the non-archival RPC's retention window.
+    mainnet: { finality: 'final' },
+    testnet: { finality: 'final' },
+  },
+  validators_by_epoch: {
+    // Testnet is periodically reset, so pin a recent archival-resolvable epoch.
+    testnet: { epoch_id: 'BARiarhzfSL7G737ik4AukX9sFYH1iR3dYU3KNUAvF3e' },
+  },
+  light_client_proof: {
+    // The example fields are transaction_hash + sender_id, which correspond to
+    // type: transaction. type: receipt would require receipt_id + receiver_id.
+    mainnet: { type: 'transaction' },
+    testnet: { type: 'transaction' },
+  },
+  EXPERIMENTAL_light_client_proof: {
+    mainnet: { type: 'transaction' },
+    testnet: { type: 'transaction' },
+  },
   view_code: {
     mainnet: { account_id: 'intents.near' },
     testnet: { account_id: 'guest-book.testnet' },
@@ -151,7 +186,22 @@ const MANUAL_RPC_EXAMPLE_OVERRIDES = {
   },
 };
 
-const AUDIT_SKIPS = {};
+const AUDIT_SKIPS = {
+  // The docs example resolves on the archival endpoint (servers point at
+  // archival-rpc) with a block_height anchor near the receipt. The live audit
+  // path targets the non-archival RPC, where receipt→tx returns UNKNOWN_RECEIPT,
+  // so it stays excluded from that audit.
+  EXPERIMENTAL_receipt_to_tx: {
+    mainnet: {
+      skip: true,
+      reason: 'Live audit uses the non-archival RPC; receipt→tx resolves only on archival-rpc with a block_height anchor (as configured in the example).',
+    },
+    testnet: {
+      skip: true,
+      reason: 'Live audit uses the non-archival RPC; receipt→tx resolves only on archival-rpc with a block_height anchor (as configured in the example).',
+    },
+  },
+};
 
 function cloneJson(value) {
   if (value === undefined) {

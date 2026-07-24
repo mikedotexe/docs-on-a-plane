@@ -117,6 +117,8 @@ In `mike-docs`:
 ```bash
 npm run sync:apis
 npm run lint
+npm run audit:description-quality:strict    # R1–R8 / S / W operation-description quality rules
+npm run audit:parameter-descriptions:strict # F1/F2/F3 parameter-description rules (present, ≥10 chars, not a name echo)
 REDOCLY_LOCAL_PLAN=enterprise npm run build
 npm run preview
 node scripts/test-operations.js http://127.0.0.1:4000
@@ -157,6 +159,7 @@ The onboarding is done when all of these are true:
 - direct `/apis/<service>/...` browsing reaches interactive operation pages
 - `builder-docs` pages work with the right auth and network behavior
 - local lint, build, and smoke are green
+- `npm run audit:description-quality:strict` and `npm run audit:parameter-descriptions:strict` both exit 0 after sync
 - the live `builder-docs` route is green after publish
 
 ## 10. Current Reference Implementations

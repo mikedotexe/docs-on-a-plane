@@ -19,7 +19,7 @@ The consumer-facing site is [builder-docs](https://github.com/fastnear/builder-d
  npm run build                # Build with PLAN_GATES, or local fallback via REDOCLY_LOCAL_PLAN
  npm run build:fresh-examples # Build after refreshing tracked RPC examples
 npm run lint                 # Sync vendored REST specs, then validate OpenAPI specs
-npm run verify:workspace     # Workspace stale-spec checks + portal lint + local build
+npm run verify:workspace     # lint + build + 12 audits (stale-spec, page-model, structured-graph, RPC examples, 5 service-default audits, description-quality, description-drift, parameter-descriptions)
 npm run smoke:operations     # Smoke test representative pretty routes while preview is running
 npm run generate-rpc         # Regenerate rpcs/*.yaml from nearcore OpenAPI spec
 ```
@@ -122,6 +122,14 @@ rpcs/openapi.yaml                              (aggregate spec)
 | `simple` | 1:1 nearcore path to YAML | `tx_status`, `send_tx` |
 | `custom` | Not in nearcore, hand-written | `metrics`, `latest_block` |
 
+### Description resolution
+
+- `resolveDescription` in `scripts/generate-from-nearcore.js` picks the operation description: `simple` types use the curated `op.description` in `scripts/nearcore-operation-map.js` by presence (override), falling through to the schemars-authored description in `../nearcore/chain/jsonrpc/openapi/openapi.json` and then to the existing leaf YAML; `decomposed` (`query`, `block_variant`, `chunk_variant`, `gas_variant`, `validators_variant`) and `custom` ops stay curated because schemars is too generic or absent.
+- `PARAM_DESCRIPTIONS` + `applyParamDescriptions` backfill parameter-field descriptions nearcore does not annotate (`method_name`, `include_proof`, light-client-proof `type`) — global, request-only, applied only where the field is still empty.
+- `op.fieldDescriptions.{request,response}` + `applyFieldDescriptions` are per-operation field overrides that win by presence — the only local layer that reaches a field already filled by a `LEAF_TYPE_MAP` type description, or a **response** field (`PARAM_DESCRIPTIONS` touches neither). Used to curate the `view_state` pagination fields (`after_key_base64`, `limit`, `last_key`) nearcore 2.13.0 shipped without `///` docs; delete an entry to defer back to nearcore once it annotates the field upstream.
+- The generator emits `dead-override`, `gap`, and `schemars-missing` warnings so stale overrides and silent regressions surface at build time.
+- Full rules and the upstream E2E edit recipe live in `PORTAL_WORKFLOW.md` → Description Precedence.
+
 ### Adding a new RPC operation
 
 1. Add an entry to `OPERATIONS` in `scripts/nearcore-operation-map.js`
@@ -156,6 +164,10 @@ node scripts/generate-from-nearcore.js /path/to/openapi.json
 | `scripts/run-realm-build.js` | Wrapped Reunite build with local-plan fallback |
 | `scripts/nearcore-operation-map.js` | Declarative operation mapping |
 | `scripts/test-operations.js` | Smoke test operation pages |
+| `scripts/audit-description-quality.js` | R1–R8 / S / W rules for operation-level descriptions (warnings + `:strict` CI gate) |
+| `scripts/audit-description-drift.js` | Enforce every `docs/api/**` and `docs/rpc/**` MDX page resolves to `UPSTREAM_DIRECT` |
+| `scripts/audit-parameter-descriptions.js` | F1/F2/F3 rules for every page-model `interaction.fields[].description` |
+| `scripts/generate-page-models.js` | Builds the shared page-model + structured-graph artifacts; enforces the `canonicalPath` / `pageModelId` / `request.examples[].id` stability contract via `auditPageModelCompatibility` + `reconcileRequestExampleIds` |
 | `INTEGRATION_GUIDE.md` | Integration reference for embedding in builder-docs |
 | `PORTAL_WORKFLOW.md` | Working agreement for sync, validation, deployment, and limitations |
 

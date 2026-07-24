@@ -184,6 +184,13 @@ For pages that need more interaction polish than raw OpenAPI can provide, the po
 - the generated page-model runtime in `builder-docs` consumes those defaults directly for native pages
 - `configure.ts` still consumes them on the legacy Redocly path
 
+Compatibility note:
+
+- `canonicalPath` and `pageModelId` are treated as stable contract data for existing generated operations.
+- `request.examples[].id` in generated page models is a public contract, not throwaway metadata.
+- `builder-docs` uses those ids in shareable example URLs via `requestExample=<id>`.
+- `scripts/generate-page-models.js` now fails if an existing canonical page disappears or changes `pageModelId`, and it preserves prior example ids across safe regenerations while failing when an old example id would be lost ambiguously or silently repurposed.
+
 Current supported request-shaping inputs in this repo:
 
 - `preset`: chooses a named manifest preset for the current operation.
@@ -350,7 +357,10 @@ npm run build                  # Build with PLAN_GATES or local-plan fallback
 npm run build:fresh-examples   # Build after refreshing tracked RPC example values
 npm run lint                   # Validate OpenAPI specs
 npm run audit:rpc-example-placeholders # Fail if generic RPC placeholders slip back into tracked examples
+npm run audit:description-quality:strict    # Fail on R1–R8 / S / W description-quality rules
+npm run audit:description-drift             # Fail if docs/api/** or docs/rpc/** MDX drifts from page-model descriptions
+npm run audit:parameter-descriptions:strict # Fail on F1–F3 field-level parameter-description rules
 npm run preview:fresh-examples # Preview after refreshing tracked RPC example values
-npm run verify:workspace       # Stale-spec checks + portal lint + local build
+npm run verify:workspace       # lint + build + 12 audits (stale-spec, page-model, structured-graph, RPC examples, 5 service-default audits, description-quality, description-drift, parameter-descriptions)
 npm run smoke:operations       # Smoke test representative local pretty routes
 ```

@@ -15,6 +15,7 @@ const MDX_SURFACE_DIRS = [
   { surface: "transfers", dir: path.join(BUILDER_DOCS_ROOT, "docs/transfers") },
   { surface: "neardata", dir: path.join(BUILDER_DOCS_ROOT, "docs/neardata") },
   { surface: "fastdata", dir: path.join(BUILDER_DOCS_ROOT, "docs/fastdata") },
+  { surface: "rpc", dir: path.join(BUILDER_DOCS_ROOT, "docs/rpc") },
 ];
 
 function walk(dir, acc = []) {
@@ -147,7 +148,8 @@ function run() {
   }
 
   for (const model of models) {
-    if (!model.canonicalPath?.startsWith("/apis/")) continue;
+    const cp = model.canonicalPath || "";
+    if (!cp.startsWith("/apis/") && !cp.startsWith("/rpcs/")) continue;
     const matchedByAnyMdx = rows.some((r) => r.pageModelId === model.pageModelId);
     if (!matchedByAnyMdx) {
       rows.push({

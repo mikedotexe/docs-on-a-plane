@@ -37,11 +37,20 @@ paths:
                     account_id:
                       type: string
                       description: NEAR account ID
+                    after_key_base64:
+                      type: [string, "null"]
+                      description: "Exclusive start cursor: returns only keys greater than this one. Set to the prior response's `last_key` to page forward; omit to scan from the start of the prefix range."
                     include_proof:
                       type: boolean
+                      description: Include a Merkle proof for the queried state alongside the values.
+                    limit:
+                      type: [integer, "null"]
+                      format: uint32
+                      minimum: 1
+                      description: Maximum key/value entries per response (≥ 1). Omit for no client-set bound (subject to node limits).
                     prefix_base64:
                       type: string
-                      description: Base64-encoded storage key
+                      description: "Base64-encoded key prefix; returns only trie entries whose key begins with these bytes. Empty string (`\"\"`) removes the filter and returns the entire contract state — expensive on large contracts."
                     request_type:
                       type: string
                       enum: [view_state]
@@ -71,8 +80,8 @@ paths:
                   params:
                     request_type: view_state
                     finality: final
-                    account_id: v1.signer-prod.testnet
-                    prefix_base64: U1RBVEU=
+                    account_id: counter.testnet
+                    prefix_base64: ""
       responses:
         200:
           description: Successful response
@@ -104,6 +113,9 @@ components:
           type: object
           description: Resulting state values for a view state query request
           properties:
+            last_key:
+              type: [string, "null"]
+              description: "Continuation cursor — the last key returned. Pass as `after_key_base64` to fetch the next page; absent when the result set is exhausted."
             proof:
               type: array
               items:

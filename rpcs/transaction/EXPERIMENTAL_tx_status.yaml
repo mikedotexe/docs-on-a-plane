@@ -1,19 +1,19 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: Get detailed transaction status"
-  description: "Fetch a transaction's full receipt tree and per-receipt outcomes — richer than `tx_status`."
+  description: "Fetch a transaction's full receipt tree and per-receipt outcomes by Base58 hash — richer than `tx_status`."
   version: 1.0.0
 servers:
-  - url: "https://rpc.mainnet.fastnear.com"
+  - url: "https://archival-rpc.mainnet.fastnear.com"
     description: Mainnet
-  - url: "https://rpc.testnet.fastnear.com"
+  - url: "https://archival-rpc.testnet.fastnear.com"
     description: Testnet
 paths:
   /:
     post:
       operationId: EXPERIMENTAL_tx_status
       summary: Get detailed transaction status
-      description: "Fetch a transaction's full receipt tree and per-receipt outcomes — richer than `tx_status`."
+      description: "Fetch a transaction's full receipt tree and per-receipt outcomes by Base58 hash — richer than `tx_status`."
       requestBody:
         required: true
         content:
@@ -47,7 +47,7 @@ paths:
                       default: EXECUTED_OPTIMISTIC
                     signed_tx_base64:
                       type: string
-                      description: Base64-encoded signed transaction
+                      description: "Base64-encoded Borsh serialization of a `SignedTransaction`; must be freshly signed (nonce above the access key's current value)."
                     sender_account_id:
                       type: string
                       description: NEAR account ID

@@ -5,6 +5,7 @@ const path = require("path");
 const YAML = require("yaml");
 const { auditPageModels } = require("./audit-page-model-routes");
 const { buildGeneratedStructuredGraph, auditGeneratedStructuredGraph } = require("./structured-graph-common");
+const { readGeneratedNearcoreSourceJson } = require("./nearcore-source-metadata");
 
 const ROOT = path.resolve(__dirname, "..");
 const ENHANCEMENTS_ROOT = path.resolve(ROOT, "enhancements");
@@ -71,6 +72,242 @@ function resolveJsonPointer(document, pointer) {
 
 function cloneJson(value) {
   return value === undefined ? value : JSON.parse(JSON.stringify(value));
+}
+
+function stableJsonStringify(value) {
+  if (Array.isArray(value)) {
+    return `[${value.map((item) => stableJsonStringify(item)).join(",")}]`;
+  }
+
+  if (value && typeof value === "object") {
+    return `{${Object.keys(value)
+      .sort()
+      .map((key) => `${JSON.stringify(key)}:${stableJsonStringify(value[key])}`)
+      .join(",")}}`;
+  }
+
+  return JSON.stringify(value);
+}
+
+function loadPreviousGeneratedPageModels() {
+  if (!fs.existsSync(GENERATED_FASTNEAR_PAGE_MODELS_JSON)) {
+    return [];
+  }
+
+  return JSON.parse(fs.readFileSync(GENERATED_FASTNEAR_PAGE_MODELS_JSON, "utf8"));
+}
+
+function auditPageModelCompatibility(models, previousModels = []) {
+  const currentModelsByCanonicalPath = new Map(
+    models
+      .filter((model) => typeof model?.canonicalPath === "string" && model.canonicalPath)
+      .map((model) => [model.canonicalPath, model])
+  );
+
+  for (const previousModel of previousModels) {
+    if (typeof previousModel?.canonicalPath !== "string" || !previousModel.canonicalPath) {
+      continue;
+    }
+
+    const currentModel = currentModelsByCanonicalPath.get(previousModel.canonicalPath);
+    if (!currentModel) {
+      throw new Error(
+        [
+          `Page model compatibility check failed for ${previousModel.canonicalPath}.`,
+          `The previously generated page model ${previousModel.pageModelId} is missing from the new output.`,
+          "Canonical operation routes are treated as a compatibility contract.",
+          "Coordinate the route removal explicitly before regenerating page models.",
+        ].join(" ")
+      );
+    }
+
+    if (currentModel.pageModelId !== previousModel.pageModelId) {
+      throw new Error(
+        [
+          `Page model compatibility check failed for ${previousModel.canonicalPath}.`,
+          `pageModelId changed from ${previousModel.pageModelId} to ${currentModel.pageModelId}.`,
+          "pageModelId is treated as stable contract data for an existing canonical route.",
+          "Preserve the prior pageModelId or coordinate the compatibility break before regenerating page models.",
+        ].join(" ")
+      );
+    }
+  }
+}
+
+function getRequestExampleSignature(example) {
+  if (!example?.request || typeof example.request !== "object") {
+    return undefined;
+  }
+
+  return stableJsonStringify(example.request);
+}
+
+function getRequestExampleLabelKey(example) {
+  const label = typeof example?.label === "string" ? example.label.trim() : "";
+  return label || undefined;
+}
+
+function getRequestExampleNetworkKey(example) {
+  return typeof example?.network === "string" && example.network ? example.network : undefined;
+}
+
+function describeRequestExample(example) {
+  return JSON.stringify({
+    id: example?.id,
+    label: example?.label,
+    network: example?.network,
+  });
+}
+
+function matchRequestExamplesUniquely(previousExamples, nextExamples, keyBuilder, onMatch) {
+  const previousByKey = new Map();
+  const nextByKey = new Map();
+
+  for (const example of previousExamples) {
+    const key = keyBuilder(example);
+    if (!key) {
+      continue;
+    }
+
+    const bucket = previousByKey.get(key) || [];
+    bucket.push(example);
+    previousByKey.set(key, bucket);
+  }
+
+  for (const example of nextExamples) {
+    const key = keyBuilder(example);
+    if (!key) {
+      continue;
+    }
+
+    const bucket = nextByKey.get(key) || [];
+    bucket.push(example);
+    nextByKey.set(key, bucket);
+  }
+
+  for (const [key, previousMatches] of previousByKey.entries()) {
+    const nextMatches = nextByKey.get(key);
+    if (previousMatches.length !== 1 || nextMatches?.length !== 1) {
+      continue;
+    }
+
+    onMatch(previousMatches[0], nextMatches[0]);
+  }
+}
+
+function auditRequestExampleIds(models) {
+  for (const model of models) {
+    const examples = Array.isArray(model?.request?.examples) ? model.request.examples : [];
+    const seenIds = new Set();
+
+    for (const example of examples) {
+      if (typeof example?.id !== "string" || !example.id.trim()) {
+        throw new Error(
+          `Request example ids must be non-empty strings for ${model.pageModelId}.`
+        );
+      }
+
+      if (seenIds.has(example.id)) {
+        throw new Error(
+          `Duplicate request example id "${example.id}" detected for ${model.pageModelId}.`
+        );
+      }
+
+      seenIds.add(example.id);
+    }
+  }
+}
+
+function reconcileRequestExampleIdsForModel(model, previousModel) {
+  const nextExamples = Array.isArray(model?.request?.examples) ? model.request.examples : [];
+  const previousExamples = Array.isArray(previousModel?.request?.examples)
+    ? previousModel.request.examples
+    : [];
+
+  if (nextExamples.length === 0 || previousExamples.length === 0) {
+    return;
+  }
+
+  const matchedPrevious = new Set();
+  const matchedNext = new Set();
+  const previousById = new Map(
+    previousExamples
+      .filter((example) => typeof example?.id === "string" && example.id)
+      .map((example) => [example.id, example])
+  );
+
+  const matchPair = (previousExample, nextExample) => {
+    if (matchedPrevious.has(previousExample) || matchedNext.has(nextExample)) {
+      return;
+    }
+
+    nextExample.id = previousExample.id;
+    matchedPrevious.add(previousExample);
+    matchedNext.add(nextExample);
+  };
+
+  for (const nextExample of nextExamples) {
+    const previousExample = previousById.get(nextExample.id);
+    if (previousExample) {
+      matchedPrevious.add(previousExample);
+      matchedNext.add(nextExample);
+    }
+  }
+
+  const runMatchStrategy = (keyBuilder) => {
+    const unmatchedPrevious = previousExamples.filter((example) => !matchedPrevious.has(example));
+    const unmatchedNext = nextExamples.filter((example) => !matchedNext.has(example));
+    matchRequestExamplesUniquely(unmatchedPrevious, unmatchedNext, keyBuilder, matchPair);
+  };
+
+  runMatchStrategy(getRequestExampleSignature);
+  runMatchStrategy(getRequestExampleNetworkKey);
+  runMatchStrategy(getRequestExampleLabelKey);
+
+  if (previousExamples.length === 1 && nextExamples.length === 1) {
+    const unmatchedPrevious = previousExamples.filter((example) => !matchedPrevious.has(example));
+    const unmatchedNext = nextExamples.filter((example) => !matchedNext.has(example));
+
+    if (unmatchedPrevious.length === 1 && unmatchedNext.length === 1) {
+      matchPair(unmatchedPrevious[0], unmatchedNext[0]);
+    }
+  }
+
+  const unresolvedPrevious = previousExamples.filter((example) => !matchedPrevious.has(example));
+  if (unresolvedPrevious.length === 0) {
+    return;
+  }
+
+  const unresolvedNext = nextExamples.filter((example) => !matchedNext.has(example));
+
+  throw new Error(
+    [
+      `Request example id compatibility check failed for ${model.pageModelId}.`,
+      `These ids are part of the public share-link contract and could not be preserved automatically.`,
+      `Previous examples: ${previousExamples.map(describeRequestExample).join(", ") || "(none)"}.`,
+      `New examples: ${nextExamples.map(describeRequestExample).join(", ") || "(none)"}.`,
+      `Unresolved previous examples: ${unresolvedPrevious.map(describeRequestExample).join(", ") || "(none)"}.`,
+      `Unresolved new examples: ${unresolvedNext.map(describeRequestExample).join(", ") || "(none)"}.`,
+      "Preserve the prior ids explicitly or coordinate the compatibility break before regenerating page models.",
+    ].join(" ")
+  );
+}
+
+function reconcileRequestExampleIds(models, previousModels = []) {
+  const previousModelsById = new Map(
+    previousModels
+      .filter((model) => typeof model?.pageModelId === "string" && model.pageModelId)
+      .map((model) => [model.pageModelId, model])
+  );
+
+  for (const model of models) {
+    const previousModel = previousModelsById.get(model.pageModelId);
+    if (!previousModel) {
+      continue;
+    }
+
+    reconcileRequestExampleIdsForModel(model, previousModel);
+  }
 }
 
 function getNetworkKey(value) {
@@ -958,7 +1195,12 @@ function buildStandalonePageModel(pageSpec) {
 }
 
 function buildPageModels() {
-  return PAGE_SPECS.map((pageSpec) => buildStandalonePageModel(pageSpec));
+  const previousModels = loadPreviousGeneratedPageModels();
+  const models = PAGE_SPECS.map((pageSpec) => buildStandalonePageModel(pageSpec));
+  auditPageModelCompatibility(models, previousModels);
+  reconcileRequestExampleIds(models, previousModels);
+  auditRequestExampleIds(models);
+  return models;
 }
 
 function writeGeneratedFastnearPageModelsModule(models) {
@@ -1022,7 +1264,10 @@ function writeGeneratedFastnearStructuredGraphJson(graph) {
 function writeGeneratedPageModelArtifacts() {
   const models = buildPageModels();
   auditPageModels(models);
-  const structuredGraph = buildGeneratedStructuredGraph(models);
+  const nearcoreSource = readGeneratedNearcoreSourceJson();
+  const structuredGraph = buildGeneratedStructuredGraph(models, {
+    metadata: nearcoreSource ? { nearcoreSource } : undefined,
+  });
   auditGeneratedStructuredGraph(structuredGraph, models);
   writeGeneratedFastnearPageModelsModule(models);
   writeGeneratedFastnearPageModelsJson(models);
@@ -1039,6 +1284,8 @@ if (require.main === module) {
 }
 
 module.exports = {
+  auditPageModelCompatibility,
+  auditRequestExampleIds,
   GENERATED_FASTNEAR_PAGE_MODELS_JSON,
   GENERATED_FASTNEAR_PAGE_MODELS_MODULE,
   GENERATED_FASTNEAR_STRUCTURED_GRAPH_JSON,
@@ -1048,5 +1295,6 @@ module.exports = {
   SOURCE_SPECS,
   buildStandalonePageModel,
   buildPageModels,
+  reconcileRequestExampleIds,
   writeGeneratedPageModelArtifacts,
 };

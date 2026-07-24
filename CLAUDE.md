@@ -61,7 +61,7 @@ npm run smoke:operations      # Smoke-check representative operation routes
 ## Reading Order
 
 1. [01 Portal Architecture And Source Of Truth](md-CLAUDE-chapters/01-portal-architecture-and-source-of-truth.md)  
-   What the repo owns, what is vendored, and how generation in `mike-docs` feeds the public runtime in `builder-docs`.
+   What the repo owns, what is vendored, and how generation in `mike-docs` feeds the public runtime in `builder-docs`. For the RPC description-precedence rules, build-time warnings (`dead-override` / `gap` / `schemars-missing`), and the upstream E2E edit recipe, see [PORTAL_WORKFLOW.md](PORTAL_WORKFLOW.md) → Description Precedence.
 
 2. [02 Auth, URL Params, And Embed Contract](md-CLAUDE-chapters/02-auth-url-and-embed-contract.md)  
    The canonical auth precedence, localStorage keys, hosted-route query params, and the browser-vs-contract distinction for API-key transport.
@@ -86,6 +86,7 @@ npm run smoke:operations      # Smoke-check representative operation routes
 - [PORTAL_WORKFLOW.md](PORTAL_WORKFLOW.md): operational checklist for sync, preview, build, and publication.
 - [INTEGRATION_GUIDE.md](INTEGRATION_GUIDE.md): current contract between generation in `mike-docs` and rendering in `builder-docs`.
 - [API_DOCS_ROLLOUT.md](API_DOCS_ROLLOUT.md): rollout tracker for service-by-service API onboarding.
+- [SERVICE_ONBOARDING_CHECKLIST.md](SERVICE_ONBOARDING_CHECKLIST.md): canonical checklist for onboarding a new REST API service into the docs stack.
 - [docs/no-redocly-view-account-spike.md](docs/no-redocly-view-account-spike.md): concise narrative summary of the standalone spike.
 
 ## Continuity Rules

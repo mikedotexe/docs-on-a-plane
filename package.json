@@ -25,6 +25,8 @@
     "audit:description-quality": "node scripts/audit-description-quality.js",
     "audit:description-quality:report": "node scripts/audit-description-quality.js --report",
     "audit:description-quality:strict": "node scripts/audit-description-quality.js --strict",
+    "audit:parameter-descriptions": "node scripts/audit-parameter-descriptions.js",
+    "audit:parameter-descriptions:strict": "node scripts/audit-parameter-descriptions.js --strict",
     "discover:fastnear-context": "node scripts/discover-fastnear-context.js",
     "discover:transfers-context": "node scripts/discover-transfers-context.js",
     "discover:kv-fastdata-context": "node scripts/discover-kv-fastdata-context.js",
@@ -36,7 +38,7 @@
     "refresh-examples": "node scripts/refresh-examples.js",
     "standalone:dev": "node scripts/standalone-dev.js",
     "standalone:build": "node scripts/standalone-build.js",
-    "verify:workspace": "npm run lint && npm run build && npm run audit:page-model-routes && npm run audit:structured-graph && npm run audit:rpc-example-placeholders && npm run audit:rpc-examples:all && npm run audit:fastnear-defaults && npm run audit:transfers-defaults && npm run audit:kv-fastdata-defaults && npm run audit:neardata-defaults && npm run audit:transactions-defaults",
+    "verify:workspace": "npm run lint && npm run build && npm run audit:page-model-routes && npm run audit:structured-graph && npm run audit:rpc-example-placeholders && npm run audit:rpc-examples:all && npm run audit:fastnear-defaults && npm run audit:transfers-defaults && npm run audit:kv-fastdata-defaults && npm run audit:neardata-defaults && npm run audit:transactions-defaults && npm run audit:description-quality:strict && npm run audit:description-drift && npm run audit:parameter-descriptions:strict",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

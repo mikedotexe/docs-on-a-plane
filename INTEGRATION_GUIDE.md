@@ -30,6 +30,8 @@ The contract between the repos is now:
    - `mike-docs/shared/generatedFastnearStructuredGraph.json`
    - `builder-docs/src/data/generatedFastnearStructuredGraph.json`
 4. shared request/auth semantics encoded into those models and the direct runtime
+5. stable identifiers preserved across regenerations
+   - `pageModelId`, `canonicalPath`, and `request.examples[].id` are treated as public contract data by `scripts/generate-page-models.js` (`auditPageModelCompatibility` + `reconcileRequestExampleIds`). `builder-docs` uses the example ids in shareable `requestExample=<id>` URLs, so the generator fails loudly on ambiguous rename/removal rather than silently repurposing them.
 
 `builder-docs` uses the vendored models in two places:
 

@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: Send transaction and wait"
-  description: "Submit a signed transaction and wait for its commit — the legacy synchronous send, superseded by `send_tx`."
+  description: "Broadcast a base64-encoded `SignedTransaction`; blocks until execution completes or a 10-second timeout elapses. Deprecated — use `send_tx`. Example payloads are placeholders and cannot be replayed."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: broadcast_tx_commit
       summary: Send transaction and wait
-      description: "Submit a signed transaction and wait for its commit — the legacy synchronous send, superseded by `send_tx`."
+      description: "Broadcast a base64-encoded `SignedTransaction`; blocks until execution completes or a 10-second timeout elapses. Deprecated — use `send_tx`. Example payloads are placeholders and cannot be replayed."
       requestBody:
         required: true
         content:
@@ -57,7 +57,7 @@ paths:
                   id: fastnear
                   method: broadcast_tx_commit
                   params:
-                    signed_tx_base64: DgAAAG1pa2UubmVhcgCpPJgEEFUwQjFQvL8V3CnZ0h688WG5sVsKE8JYM37ax2cUjgEAAAAAAAAADQAAAG1pa2V0ZXN0Lm5lYXIPfFBmYNAIe2/MicVhDXbvT3w06LxS2OCF0UHIYgjNDQAAAHRlc3RpbmcgbWVtbwEAAAADAQAAAAAAAAAAAAAAAAAAAA==
+                    signed_tx_base64: "CQAAAG1pa2UubmVhcgD64cHVt7yB8HSzql1e8RLKSv2riwv7+vNviWHD/y95EgEAAAAAAAAADQAAAG1pa2V0ZXN0Lm5lYXJBM1Y72BJnk/V7dlrTRBxxxUxyB/JXo+hODCyF0woAEAEAAAADAQAAAAAAAAAAAAAAAAAAAADiGG3IJC5QsOBN70h+glB+U9nBYEXObdaPHMjXyu2YQbQUvALIWbdBBxhuR9VQ/fEXg7L0vGSCd9wCCrq0CFIF"
               testnet:
                 summary: Testnet Example
                 value:
@@ -65,7 +65,7 @@ paths:
                   id: fastnear
                   method: broadcast_tx_commit
                   params:
-                    signed_tx_base64: DgAAAG1pa2UudGVzdG5ldACpPJgEEFUwQjFQvL8V3CnZ0h688WG5sVsKE8JYM37ax2cUjgEAAAAAAAAADQAAAG1pa2V0ZXN0LnRlc3RuZXQPfFBmYNAIe2/MicVhDXbvT3w06LxS2OCF0UHIYgjNDQAAAHRlc3RpbmcgbWVtbwEAAAADAQAAAAAAAAAAAAAAAAAAAA==
+                    signed_tx_base64: "DAAAAG1pa2UudGVzdG5ldAAnrCNE2/YvBtldmNpxP3k7ego/A6RxrtUvzhp3ngJJTQEAAAAAAAAAEAAAAG1pa2V0ZXN0LnRlc3RuZXTIRL9kr4DAnxTBWcN/e5852wyOE353mPf+XnCN73Z/hwEAAAADAQAAAAAAAAAAAAAAAAAAAADMWuZ8agklUGXpr759mp4DIsPFKgc+ZYFMjR6hjoPrNR9vPxFeLVm8jpLqr6+U9BnlQU7chIfUkeppU1YFvHsO"
       responses:
         200:
           description: Successful response

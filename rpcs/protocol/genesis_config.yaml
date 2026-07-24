@@ -81,13 +81,6 @@ components:
         result:
           type: object
           properties:
-            avg_hidden_validator_seats_per_shard:
-              type: array
-              items:
-                type: integer
-                format: uint64
-                minimum: 0
-              description: Expected number of hidden validators per shard.
             block_producer_kickout_threshold:
               type: integer
               description: "Threshold for kicking out block producers, between 0 and 100."
@@ -190,26 +183,10 @@ components:
               description: Number of block producer seats at genesis.
               format: uint64
               minimum: 0
-            num_block_producer_seats_per_shard:
-              type: array
-              items:
-                type: integer
-                format: uint64
-                minimum: 0
-              description: |-
-                  Defines number of shards and number of block producer seats per each shard at genesis.
-                  Note: not used with protocol_feature_chunk_only_producers -- replaced by minimum_validators_per_shard
-                  Note: not used before as all block producers produce chunks for all shards
             num_blocks_per_year:
               type: integer
               description: Expected number of blocks per year
               format: uint64
-              minimum: 0
-            num_chunk_only_producer_seats:
-              type: integer
-              description: Deprecated.
-              format: uint64
-              default: 300
               minimum: 0
             num_chunk_producer_seats:
               type: integer
@@ -303,14 +280,35 @@ components:
                 type: object
                 description: Account info for validators
               description: List of initial validators.
+            avg_hidden_validator_seats_per_shard:
+              type: array
+              items:
+                type: integer
+                format: uint64
+                minimum: 0
+              description: Expected number of hidden validators per shard.
+            num_block_producer_seats_per_shard:
+              type: array
+              items:
+                type: integer
+                format: uint64
+                minimum: 0
+              description: |-
+                  Defines number of shards and number of block producer seats per each shard at genesis.
+                  Note: not used with protocol_feature_chunk_only_producers -- replaced by minimum_validators_per_shard
+                  Note: not used before as all block producers produce chunks for all shards
+            num_chunk_only_producer_seats:
+              type: integer
+              description: Deprecated.
+              format: uint64
+              default: 300
+              minimum: 0
           required:
             - protocol_version
             - genesis_time
             - chain_id
             - genesis_height
             - num_block_producer_seats
-            - num_block_producer_seats_per_shard
-            - avg_hidden_validator_seats_per_shard
             - dynamic_resharding
             - epoch_length
             - gas_limit

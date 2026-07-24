@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: "NEAR Protocol RPC: Get receipt by ID"
-  description: Fetch a single receipt by Base58 ID — the cross-shard execution unit a transaction produces.
+  title: "NEAR Protocol RPC: Resolve receipt to transaction"
+  description: "Resolve a receipt ID to the transaction hash and signer that produced it. Requires a node with `save_receipt_to_tx` enabled; unindexed receipts return `UNKNOWN_RECEIPT`."
   version: 1.0.0
 servers:
   - url: "https://archival-rpc.mainnet.fastnear.com"
@@ -11,9 +11,9 @@ servers:
 paths:
   /:
     post:
-      operationId: EXPERIMENTAL_receipt
-      summary: Get receipt by ID
-      description: Fetch a single receipt by Base58 ID — the cross-shard execution unit a transaction produces.
+      operationId: EXPERIMENTAL_receipt_to_tx
+      summary: Resolve receipt to transaction
+      description: "Resolve a receipt ID to the transaction hash and signer that produced it. Requires a node with `save_receipt_to_tx` enabled; unindexed receipts return `UNKNOWN_RECEIPT`."
       requestBody:
         required: true
         content:
@@ -30,31 +30,46 @@ paths:
                   example: fastnear
                 method:
                   type: string
-                  enum: [EXPERIMENTAL_receipt]
+                  enum: [EXPERIMENTAL_receipt_to_tx]
                 params:
                   type: object
                   properties:
+                    block_height:
+                      type: [integer, "null"]
+                      description: "Optional hint: block height near where the receipt was created, to bound the fallback scan."
+                      format: uint64
+                      minimum: 0
                     receipt_id:
                       type: string
-                      description: Base58-encoded hash
+                      description: Base58-encoded receipt ID to resolve to its originating transaction.
+                    shard_id:
+                      type: [integer, "null"]
+                      description: "Optional hint: shard to scan at the hint height; omit to scan all tracked shards."
+                    window:
+                      type: [integer, "null"]
+                      description: "Optional hint: ± block-height window scanned around the hint before walking ancestor blocks."
+                      format: uint64
+                      minimum: 0
                   required: [receipt_id]
             examples:
               mainnet:
-                summary: Get receipt by ID (Mainnet)
+                summary: Resolve receipt to transaction (Mainnet)
                 value:
                   jsonrpc: "2.0"
                   id: fastnear
-                  method: EXPERIMENTAL_receipt
+                  method: EXPERIMENTAL_receipt_to_tx
                   params:
                     receipt_id: ETMK9HmPsAYcNxfSXBejMWQs57W4Ph5HDYoYhDMpotQn
+                    block_height: 194263442
               testnet:
-                summary: Get receipt by ID (Testnet)
+                summary: Resolve receipt to transaction (Testnet)
                 value:
                   jsonrpc: "2.0"
                   id: fastnear
-                  method: EXPERIMENTAL_receipt
+                  method: EXPERIMENTAL_receipt_to_tx
                   params:
                     receipt_id: 9uJmhNCLRgsFncH3anffPLE1YsZCPTyAZrBdekc3vTaZ
+                    block_height: 246016180
       responses:
         200:
           description: Successful response
@@ -85,25 +100,13 @@ components:
         result:
           type: object
           properties:
-            predecessor_id:
+            sender_account_id:
               type: string
               description: NEAR account ID
-            priority:
-              type: integer
-              description: "Deprecated, retained for backward compatibility."
-              format: uint64
-              default: 0
-              minimum: 0
-            receipt:
-              type: object
-              description: One of multiple possible types
-            receipt_id:
+            transaction_hash:
               type: string
               description: Base58-encoded hash
-            receiver_id:
-              type: string
-              description: NEAR account ID
-          required: [predecessor_id, receiver_id, receipt_id, receipt]
+          required: [transaction_hash, sender_account_id]
         error:
           type: object
           properties:

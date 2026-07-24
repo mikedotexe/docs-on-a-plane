@@ -81,13 +81,6 @@ components:
         result:
           type: object
           properties:
-            avg_hidden_validator_seats_per_shard:
-              type: array
-              items:
-                type: integer
-                format: uint64
-                minimum: 0
-              description: Expected number of hidden validators per shard.
             block_producer_kickout_threshold:
               type: integer
               description: "Threshold for kicking out block producers, between 0 and 100."
@@ -177,13 +170,6 @@ components:
               description: Number of block producer seats at genesis.
               format: uint64
               minimum: 0
-            num_block_producer_seats_per_shard:
-              type: array
-              items:
-                type: integer
-                format: uint64
-                minimum: 0
-              description: Defines number of shards and number of block producer seats per each shard at genesis.
             num_blocks_per_year:
               type: integer
               description: Expected number of blocks per year
@@ -225,12 +211,20 @@ components:
               type: object
               description: View that preserves JSON format of the runtime config.
               properties:
+                account_creation_charge:
+                  type: string
+                  description: Amount in yoctoNEAR
+                  default: "0"
                 account_creation_config:
                   type: object
                   description: The structure describes configuration for creation of new accounts.
                 congestion_control_config:
                   type: object
                   description: "The configuration for congestion control. More info about congestion [here](https://near.github.io/nearcore/architecture/how/receipt-congestion.html?highlight=congestion#receipt-congestion)"
+                min_gas_purchase_price:
+                  type: string
+                  description: Amount in yoctoNEAR
+                  default: "0"
                 storage_amount_per_byte:
                   type: string
                   description: Amount in yoctoNEAR
@@ -263,6 +257,20 @@ components:
               description: Number of blocks for which a given transaction is valid
               format: uint64
               minimum: 0
+            avg_hidden_validator_seats_per_shard:
+              type: array
+              items:
+                type: integer
+                format: uint64
+                minimum: 0
+              description: Expected number of hidden validators per shard.
+            num_block_producer_seats_per_shard:
+              type: array
+              items:
+                type: integer
+                format: uint64
+                minimum: 0
+              description: Defines number of shards and number of block producer seats per each shard at genesis.
         error:
           type: object
           properties:

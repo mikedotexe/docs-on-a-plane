@@ -100,6 +100,8 @@ paths:
     $ref: './transaction/EXPERIMENTAL_tx_status.yaml#/paths/~1'
   /EXPERIMENTAL_receipt:
     $ref: './transaction/EXPERIMENTAL_receipt.yaml#/paths/~1'
+  /EXPERIMENTAL_receipt_to_tx:
+    $ref: './transaction/EXPERIMENTAL_receipt_to_tx.yaml#/paths/~1'
 
   # Validator operations
   /validators_current:

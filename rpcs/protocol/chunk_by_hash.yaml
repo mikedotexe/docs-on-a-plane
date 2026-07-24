@@ -1,19 +1,19 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: Get chunk by hash"
-  description: "Fetch a single chunk's transactions and receipts by its content hash."
+  description: "Fetch a single chunk's transactions and receipts by its Base58 content hash."
   version: 1.0.0
 servers:
-  - url: "https://rpc.mainnet.fastnear.com"
+  - url: "https://archival-rpc.mainnet.fastnear.com"
     description: Mainnet
-  - url: "https://rpc.testnet.fastnear.com"
+  - url: "https://archival-rpc.testnet.fastnear.com"
     description: Testnet
 paths:
   /:
     post:
       operationId: chunk_by_hash
       summary: Get chunk by hash
-      description: "Fetch a single chunk's transactions and receipts by its content hash."
+      description: "Fetch a single chunk's transactions and receipts by its Base58 content hash."
       requestBody:
         required: true
         content:

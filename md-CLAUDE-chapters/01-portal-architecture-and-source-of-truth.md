@@ -24,6 +24,7 @@ The bespoke UI styling source of truth is now `builder-docs/src/css/custom.css`.
   - `scripts/nearcore-operation-map.js`
   - `scripts/generate-from-nearcore.js`
 - `custom` operations in the operation map can remain hand-maintained.
+- Operation descriptions resolve through `resolveDescription` in `scripts/generate-from-nearcore.js`: `simple` types use the curated override in the operation map by presence, falling through to the schemars description in nearcore and then to the existing leaf YAML; `decomposed` variants and `custom` ops stay curated. `PARAM_DESCRIPTIONS` + `applyParamDescriptions` backfill parameter fields nearcore does not annotate. Full precedence rules and the upstream E2E edit recipe live in `PORTAL_WORKFLOW.md` → Description Precedence.
 
 ### `apis/`
 

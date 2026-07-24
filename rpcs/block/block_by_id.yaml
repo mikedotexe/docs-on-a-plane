@@ -1,19 +1,19 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: Get block by hash"
-  description: "Fetch a block's header and chunk summaries by its SHA-256 hash."
+  description: "Fetch a block's header and chunk summaries by its Base58-encoded SHA-256 hash."
   version: 1.0.0
 servers:
-  - url: "https://rpc.mainnet.fastnear.com"
+  - url: "https://archival-rpc.mainnet.fastnear.com"
     description: Mainnet
-  - url: "https://rpc.testnet.fastnear.com"
+  - url: "https://archival-rpc.testnet.fastnear.com"
     description: Testnet
 paths:
   /:
     post:
       operationId: block_by_id
       summary: Get block by hash
-      description: "Fetch a block's header and chunk summaries by its SHA-256 hash."
+      description: "Fetch a block's header and chunk summaries by its Base58-encoded SHA-256 hash."
       x-fastnear-interaction:
         kind: rpc-block-by-id
       x-hideReplay: true
@@ -49,7 +49,7 @@ paths:
                   id: fastnear
                   method: block
                   params:
-                    block_id: 9XN7MtDywZvfGx6TKy1MT2iCZkKuHikJXmNazxdZ4x6T
+                    block_id: EPnLgE7iEq9s7yTkos96M3cWymH5avBAPm3qx3NXqR8H
               testnet:
                 summary: Get block by hash (Testnet)
                 value:
@@ -57,7 +57,7 @@ paths:
                   id: fastnear
                   method: block
                   params:
-                    block_id: 6JYj6i1FaUCzdoqy41CqUcZJxa5n9EmLEENRDH2gLm5u
+                    block_id: CoPszhGFqcx9L1HQYM62g3UjxMpuZD8RiZL6QdpBZXA4
       responses:
         200:
           description: Successful response

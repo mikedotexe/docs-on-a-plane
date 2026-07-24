@@ -131,7 +131,7 @@ const EXPECTED_FAMILY_OPERATION_COUNTS = {
   "rpc-block": 3,
   "rpc-contract": 5,
   "rpc-protocol": 20,
-  "rpc-transaction": 6,
+  "rpc-transaction": 7,
   "rpc-validators": 3,
 };
 
@@ -318,8 +318,12 @@ function buildBreadcrumbDescriptor(operation, family) {
   };
 }
 
-function buildGeneratedStructuredGraph(pageModels) {
+function buildGeneratedStructuredGraph(pageModels, options = {}) {
   assert(Array.isArray(pageModels), "Structured graph generation requires a page-model array");
+  const metadata =
+    options.metadata && typeof options.metadata === "object"
+      ? JSON.parse(JSON.stringify(options.metadata))
+      : null;
 
   const usedFamilies = new Map();
   const operations = pageModels
@@ -340,6 +344,7 @@ function buildGeneratedStructuredGraph(pageModels) {
   return {
     breadcrumbs,
     families,
+    ...(metadata ? { metadata } : {}),
     operations,
     version: 1,
   };
@@ -351,6 +356,33 @@ function auditGeneratedStructuredGraph(graph, pageModels) {
   assert(Array.isArray(graph.families), "Structured graph families must be an array");
   assert(Array.isArray(graph.operations), "Structured graph operations must be an array");
   assert(Array.isArray(graph.breadcrumbs), "Structured graph breadcrumbs must be an array");
+  if (graph.metadata !== undefined) {
+    assert(graph.metadata && typeof graph.metadata === "object", "Structured graph metadata must be an object");
+    if (graph.metadata.nearcoreSource !== undefined) {
+      const nearcoreSource = graph.metadata.nearcoreSource;
+      assert(
+        nearcoreSource && typeof nearcoreSource === "object",
+        "Structured graph nearcoreSource metadata must be an object"
+      );
+      assert(
+        typeof nearcoreSource.repoUrl === "string" && nearcoreSource.repoUrl,
+        "Structured graph nearcoreSource repoUrl must be present"
+      );
+      if (nearcoreSource.tag !== null && nearcoreSource.tag !== undefined) {
+        assert(
+          typeof nearcoreSource.tag === "string" && nearcoreSource.tag,
+          "Structured graph nearcoreSource tag must be a string when present"
+        );
+      }
+      if (nearcoreSource.releaseUrl !== null && nearcoreSource.releaseUrl !== undefined) {
+        assert(
+          typeof nearcoreSource.releaseUrl === "string" &&
+            nearcoreSource.releaseUrl.startsWith("https://github.com/near/nearcore/releases/tag/"),
+          "Structured graph nearcoreSource releaseUrl must point at a nearcore release tag"
+        );
+      }
+    }
+  }
 
   const familyIds = new Set();
   const familyDocsPaths = new Map();

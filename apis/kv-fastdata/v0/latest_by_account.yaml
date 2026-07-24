@@ -52,7 +52,7 @@ paths:
               example:
                 error: invalid page token
               schema:
-                $ref: "#/components/schemas/ApiError"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Invalid key filter or page token
         "500":
           content:
@@ -60,7 +60,7 @@ paths:
               example:
                 error: internal server error
               schema:
-                $ref: "#/components/schemas/ApiError"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Scylla query failure
       summary: Fetch latest key-value rows for one contract across all predecessors
       tags:
@@ -80,6 +80,7 @@ components:
           description: Include receipt and signer metadata in each entry.
           type: boolean
         limit:
+          description: Maximum number of entries to return in one page (1–200, default 50).
           format: int32
           maximum: 200
           minimum: 1
@@ -89,14 +90,6 @@ components:
           description: Opaque pagination cursor from a previous `/v0/all/{predecessor_id}` response.
           nullable: true
           type: string
-      type: object
-    ApiError:
-      additionalProperties: false
-      properties:
-        error:
-          type: string
-      required:
-        - error
       type: object
     ByKeyRequest:
       additionalProperties: false
@@ -113,6 +106,7 @@ components:
           description: Exact key name to match across all accounts and predecessors.
           type: string
         limit:
+          description: Maximum number of entries to return in one page (1–200, default 50).
           format: int32
           maximum: 200
           minimum: 1
@@ -124,6 +118,14 @@ components:
           type: string
       required:
         - key
+      type: object
+    ErrorResponse:
+      additionalProperties: false
+      properties:
+        error:
+          type: string
+      required:
+        - error
       type: object
     KvEntry:
       additionalProperties: false
@@ -182,6 +184,7 @@ components:
           nullable: true
           type: string
         limit:
+          description: Maximum number of entries to return in one page (1–200, default 50).
           format: int32
           maximum: 200
           minimum: 1
@@ -294,6 +297,7 @@ components:
           nullable: true
           type: string
         limit:
+          description: Maximum number of entries to return in one page (1–200, default 50).
           format: int32
           maximum: 200
           minimum: 1
