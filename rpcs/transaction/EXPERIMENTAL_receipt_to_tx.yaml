@@ -4,9 +4,9 @@ info:
   description: "Resolve a receipt ID to the transaction hash and signer that produced it. Requires a node with `save_receipt_to_tx` enabled; unindexed receipts return `UNKNOWN_RECEIPT`."
   version: 1.0.0
 servers:
-  - url: "https://rpc.mainnet.fastnear.com"
+  - url: "https://archival-rpc.mainnet.fastnear.com"
     description: Mainnet
-  - url: "https://rpc.testnet.fastnear.com"
+  - url: "https://archival-rpc.testnet.fastnear.com"
     description: Testnet
 paths:
   /:
@@ -59,7 +59,8 @@ paths:
                   id: fastnear
                   method: EXPERIMENTAL_receipt_to_tx
                   params:
-                    receipt_id: FcFKrKQziMPCgYMFiLMZwecBtA7vqxdkatkhc1j3GYj8
+                    receipt_id: ETMK9HmPsAYcNxfSXBejMWQs57W4Ph5HDYoYhDMpotQn
+                    block_height: 194263442
               testnet:
                 summary: Resolve receipt to transaction (Testnet)
                 value:
@@ -67,10 +68,8 @@ paths:
                   id: fastnear
                   method: EXPERIMENTAL_receipt_to_tx
                   params:
-                    block_height: null
-                    receipt_id: ExampleReceiptId
-                    shard_id: 0
-                    window: null
+                    receipt_id: 9uJmhNCLRgsFncH3anffPLE1YsZCPTyAZrBdekc3vTaZ
+                    block_height: 246016180
       responses:
         200:
           description: Successful response

@@ -4,9 +4,9 @@ info:
   description: Fetch a single receipt by Base58 ID — the cross-shard execution unit a transaction produces.
   version: 1.0.0
 servers:
-  - url: "https://rpc.mainnet.fastnear.com"
+  - url: "https://archival-rpc.mainnet.fastnear.com"
     description: Mainnet
-  - url: "https://rpc.testnet.fastnear.com"
+  - url: "https://archival-rpc.testnet.fastnear.com"
     description: Testnet
 paths:
   /:

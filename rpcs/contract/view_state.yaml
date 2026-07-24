@@ -80,8 +80,8 @@ paths:
                   params:
                     request_type: view_state
                     finality: final
-                    account_id: v1.signer-prod.testnet
-                    prefix_base64: U1RBVEU=
+                    account_id: counter.testnet
+                    prefix_base64: ""
       responses:
         200:
           description: Successful response
