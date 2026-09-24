@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: View access key"
-  description: "Fetch one access key's permissions and nonce by public key on a given account."
+  description: "Fetch one access key's permissions and nonce by public key on a given account. Pass the full public key with its type prefix. For an ML-DSA-65 key that is the full ml-dsa-65: key, not the ml-dsa-65-hash: handle that view_access_key_list reports; the handle is rejected with a parse error (unknown key type)."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: view_access_key
       summary: View access key
-      description: "Fetch one access key's permissions and nonce by public key on a given account."
+      description: "Fetch one access key's permissions and nonce by public key on a given account. Pass the full public key with its type prefix. For an ML-DSA-65 key that is the full ml-dsa-65: key, not the ml-dsa-65-hash: handle that view_access_key_list reports; the handle is rejected with a parse error (unknown key type)."
       x-fastnear-interaction:
         kind: rpc-view-access-key
       x-hideReplay: true
@@ -42,7 +42,7 @@ paths:
                       description: NEAR account ID
                     public_key:
                       type: string
-                      description: "ed25519: or secp256k1: prefixed public key"
+                      description: "Public key with its type prefix: ed25519:, secp256k1:, or the full ml-dsa-65: key (never the ml-dsa-65-hash: handle)."
                     request_type:
                       type: string
                       enum: [view_access_key]

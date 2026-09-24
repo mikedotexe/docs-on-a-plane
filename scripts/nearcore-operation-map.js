@@ -27,7 +27,7 @@ const LEAF_TYPE_MAP = {
   AccountId: { type: 'string', description: 'NEAR account ID' },
   CryptoHash: { type: 'string', description: 'Base58-encoded hash' },
   NearToken: { type: 'string', description: 'Amount in yoctoNEAR' },
-  PublicKey: { type: 'string', description: 'ed25519: or secp256k1: prefixed public key' },
+  PublicKey: { type: 'string', description: 'Public key with its type prefix: ed25519:, secp256k1:, or the full ml-dsa-65: key (never the ml-dsa-65-hash: handle).' },
   FunctionArgs: { type: 'string', description: 'Base64-encoded method arguments' },
   StoreKey: { type: 'string', description: 'Base64-encoded storage key' },
   StoreValue: { type: 'string', description: 'Base64-encoded storage value' },
@@ -130,7 +130,7 @@ const OPERATIONS = [
     category: 'account',
     operationId: 'view_access_key',
     summary: 'View access key',
-    description: "Fetch one access key's permissions and nonce by public key on a given account.",
+    description: "Fetch one access key's permissions and nonce by public key on a given account. Pass the full public key with its type prefix. For an ML-DSA-65 key that is the full ml-dsa-65: key, not the ml-dsa-65-hash: handle that view_access_key_list reports; the handle is rejected with a parse error (unknown key type).",
     exampleParamsByNetwork: {
       mainnet: {
         account_id: 'root.near',
@@ -157,7 +157,7 @@ const OPERATIONS = [
     category: 'account',
     operationId: 'view_access_key_list',
     summary: 'View access key list',
-    description: "Fetch every access key attached to an account, each with its permissions and nonce.",
+    description: "Fetch every access key attached to an account, each with its permissions and nonce. ML-DSA-65 keys are listed by their ml-dsa-65-hash: handle; to query one with view_access_key, or to reference it in an action, use the full ml-dsa-65: public key instead.",
     exampleParamsByNetwork: {
       mainnet: {
         account_id: 'root.near',

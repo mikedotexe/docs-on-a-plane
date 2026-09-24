@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: "NEAR Protocol RPC: View access key list"
-  description: "Fetch every access key attached to an account, each with its permissions and nonce."
+  description: "Fetch every access key attached to an account, each with its permissions and nonce. ML-DSA-65 keys are listed by their ml-dsa-65-hash: handle; to query one with view_access_key, or to reference it in an action, use the full ml-dsa-65: public key instead."
   version: 1.0.0
 servers:
   - url: "https://rpc.mainnet.fastnear.com"
@@ -13,7 +13,7 @@ paths:
     post:
       operationId: view_access_key_list
       summary: View access key list
-      description: "Fetch every access key attached to an account, each with its permissions and nonce."
+      description: "Fetch every access key attached to an account, each with its permissions and nonce. ML-DSA-65 keys are listed by their ml-dsa-65-hash: handle; to query one with view_access_key, or to reference it in an action, use the full ml-dsa-65: public key instead."
       x-fastnear-interaction:
         kind: rpc-view-access-key-list
       x-hideReplay: true
